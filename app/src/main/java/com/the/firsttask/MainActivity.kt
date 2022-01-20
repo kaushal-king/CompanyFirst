@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.widget.EditText
-import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -65,29 +64,29 @@ class MainActivity : AppCompatActivity() {
 
         } else {
             val enterNumber: Double = inr.toDouble()
-            var result: Double
+            var resultABC: Double
             var id: Int = radioGroup.checkedRadioButtonId
 
             if (id == R.id.rd_Usd) {
 
-                result = enterNumber * 0.013
-                result = "%.5f".format(result).toDouble()
-                answer.text = getString(R.string.currency_ans_title) + result.toString()
-                return result
+                resultABC = enterNumber * 0.013
+                resultABC = "%.5f".format(resultABC).toDouble()
+                answer.text = getString(R.string.currency_ans_title) + resultABC.toString()
+                return resultABC
 
             } else if (id == R.id.rd_Pound) {
 
-                result = enterNumber * 0.0098
-                result = "%.5f".format(result).toDouble()
-                answer.text = getString(R.string.currency_ans_title) + result.toString()
-                return result
+                resultABC = enterNumber * 0.0098
+                resultABC = "%.5f".format(resultABC).toDouble()
+                answer.text = getString(R.string.currency_ans_title) + resultABC.toString()
+                return resultABC
 
             } else if (id == R.id.rd_Euro) {
 
-                result = enterNumber * 0.012
-                result = "%.5f".format(result).toDouble()
-                answer.text = getString(R.string.currency_ans_title) + result.toString()
-                return result
+                resultABC = enterNumber * 0.012
+                resultABC = "%.5f".format(resultABC).toDouble()
+                answer.text = getString(R.string.currency_ans_title) + resultABC.toString()
+                return resultABC
 
             }
 
