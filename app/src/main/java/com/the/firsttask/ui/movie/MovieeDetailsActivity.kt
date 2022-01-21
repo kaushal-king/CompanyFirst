@@ -39,6 +39,10 @@ class MovieeDetailsActivity : AppCompatActivity() {
             binding.tvAdult.text = getString(R.string.UA)
         }
 
+        binding.ivBack.setOnClickListener{
+            super.onBackPressed()
+        }
+
 
     }
 }

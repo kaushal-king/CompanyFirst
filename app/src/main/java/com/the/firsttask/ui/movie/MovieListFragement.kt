@@ -11,8 +11,8 @@ import com.the.firsttask.R
 import com.the.firsttask.adapter.MovieCardAdapter
 import com.the.firsttask.api.Api
 import com.the.firsttask.api.ApiClient
-import com.the.firsttask.databinding.FragmentCalculatorBinding
 import com.the.firsttask.databinding.FragmentMovieListBinding
+
 import com.the.firsttask.dataclass.MovieDetailsDataClass
 import retrofit2.Call
 import retrofit2.Callback
@@ -23,6 +23,7 @@ class MovieListFragement : Fragment() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
+//        setHasOptionsMenu(true)
         super.onCreate(savedInstanceState)
 
     }
@@ -79,6 +80,7 @@ class MovieListFragement : Fragment() {
             ) {
                 if (response.isSuccessful) {
                     listMovie = response.body()?.results as List<MovieDetailsDataClass>
+                    listMovie=listMovie.take(4)
                     adapter = MovieCardAdapter(listMovie, activity!!, "popular")
                     binding.rvPopular.adapter = adapter
                 } else {
@@ -108,6 +110,7 @@ class MovieListFragement : Fragment() {
             ) {
                 if (response.isSuccessful) {
                     listMovie = response.body()?.results as List<MovieDetailsDataClass>
+                    listMovie=listMovie.take(4)
                     adapter = MovieCardAdapter(listMovie, activity!!, "top")
                     binding.rvTopRate.adapter = adapter
                 } else {
@@ -127,9 +130,12 @@ class MovieListFragement : Fragment() {
     }
 
 
-        override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
 
-        activity?.menuInflater?.inflate(R.menu.drawer, menu)
 
-    }
+//    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+//
+//           activity?.menuInflater?.inflate(R.menu.drawer, menu)
+//
+//        super.onCreateOptionsMenu(menu, inflater)
+//    }
 }

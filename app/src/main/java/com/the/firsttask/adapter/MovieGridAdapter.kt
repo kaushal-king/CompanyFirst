@@ -16,7 +16,7 @@ import com.the.firsttask.ui.movie.MovieeDetailsActivity
 import com.the.firsttask.R
 
 class MovieGridAdapter(
-    private val mList: List<MovieDetailsDataClass>,
+    private var mList: List<MovieDetailsDataClass>,
     var mCtx: Context,
     var movieType: String
 ) : RecyclerView.Adapter<MovieGridAdapter.ViewHolder>() {
@@ -61,6 +61,8 @@ class MovieGridAdapter(
 
     }
 
+
+
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = mList[position]
 
@@ -74,6 +76,11 @@ class MovieGridAdapter(
 
     override fun getItemCount(): Int {
         return mList.count()
+    }
+
+    fun filterList(filterllist: List<MovieDetailsDataClass?>) {
+        mList = filterllist as List<MovieDetailsDataClass>
+        notifyDataSetChanged()
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

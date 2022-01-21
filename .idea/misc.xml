@@ -4,6 +4,8 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/company/app/src/main/res/drawable/cardviewbg.xml" value="0.13854166666666667" />
+        <entry key="..\:/company/app/src/main/res/drawable/ic_baseline_arrow_back_24.xml" value="0.13541666666666666" />
+        <entry key="..\:/company/app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.13958333333333334" />
         <entry key="..\:/company/app/src/main/res/drawable/ripple.xml" value="0.13854166666666667" />
         <entry key="..\:/company/app/src/main/res/layout/activity_drawer.xml" value="0.16458333333333333" />
         <entry key="..\:/company/app/src/main/res/layout/activity_main.xml" value="0.264" />

@@ -1,16 +1,24 @@
 package com.the.firsttask.ui.movie
 
 import MovielistDataClass
+import android.app.Activity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.util.Log
+import android.view.View
+import android.view.inputmethod.EditorInfo
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
 import com.the.firsttask.ConstantHelper
 import com.the.firsttask.R
+import com.the.firsttask.adapter.MovieGridAdapter
 import com.the.firsttask.api.Api
 import com.the.firsttask.api.ApiClient
-import com.the.firsttask.dataclass.MovieDetailsDataClass
-import com.the.firsttask.adapter.MovieGridAdapter
 import com.the.firsttask.databinding.ActivityMovieGridBinding
+import com.the.firsttask.dataclass.MovieDetailsDataClass
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -20,11 +28,12 @@ class MovieGridActivity : AppCompatActivity() {
     var adapter: MovieGridAdapter? = null
     lateinit var listMovie: List<MovieDetailsDataClass>
     lateinit var movieType: String
+    lateinit var view : ConstraintLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMovieGridBinding.inflate(layoutInflater)
-        val view = binding.root
+        view = binding.root
         setContentView(view)
 
         movieType = intent.getStringExtra(ConstantHelper.BUNDLE_MOVIE_TYPE).toString()
@@ -34,10 +43,65 @@ class MovieGridActivity : AppCompatActivity() {
             binding.tvListTitle.text = getString(R.string.popular_movie)
         }
 
+        binding.ibSearch.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(p0: View?) {
+                binding.tvListTitle.visibility = View.GONE
+                binding.ibSearch.visibility = View.GONE
+                binding.etSearch.visibility = View.VISIBLE
+                binding.ibSearchBack.visibility = View.VISIBLE
+
+            }
+        })
+
+        binding.ibSearchBack.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(p0: View?) {
+                binding.etSearch.setText("")
+                searchToggle()
+            }
+        })
+
+        binding.etSearch.addTextChangedListener(object : TextWatcher {
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                searchMovie(p0.toString())
+            }
+
+            override fun afterTextChanged(p0: Editable?) {
+
+            }
+
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+            }
+        })
+
+        binding.etSearch.setOnEditorActionListener { _, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+
+                searchToggle()
+            }
+            true
+        }
+
+
         loadMovie()
 
     }
 
+
+    private fun searchMovie(searchText: String) {
+
+        var filterList: List<MovieDetailsDataClass> =
+            listMovie.filter { movie -> movie.title.contains(searchText, ignoreCase = true) }
+
+        Log.e("TAG", "searchMovie: "+filterList, )
+        if(filterList.isEmpty()){
+            Toast.makeText(this@MovieGridActivity,getString(R.string.toast_filter_message),Toast.LENGTH_LONG)
+        }
+        else{
+            adapter?.filterList(filterList)
+        }
+
+    }
 
     private fun loadMovie() {
         var client = ApiClient()
@@ -53,7 +117,11 @@ class MovieGridActivity : AppCompatActivity() {
                     adapter = MovieGridAdapter(listMovie, this@MovieGridActivity, movieType)
                     binding.rvMovieList.adapter = adapter
                 } else {
-                    Toast.makeText(applicationContext, getString(R.string.toast_message), Toast.LENGTH_SHORT)
+                    Toast.makeText(
+                        applicationContext,
+                        getString(R.string.toast_message),
+                        Toast.LENGTH_SHORT
+                    )
                         .show()
 
                 }
@@ -66,6 +134,32 @@ class MovieGridActivity : AppCompatActivity() {
             }
         })
 
+    }
+
+    override fun onBackPressed() {
+        if(!binding.etSearch.text.isEmpty())
+        {
+            searchToggle()
+            binding.etSearch.setText("")
+        }
+        else{
+            searchToggle()
+            binding.etSearch.setText("")
+            super.onBackPressed()
+        }
+
+    }
+
+    private  fun  searchToggle(){
+        binding.etSearch.clearFocus()
+        val inputMethodManager =
+            getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
+        searchMovie( binding.etSearch.text.toString())
+        binding.tvListTitle.visibility = View.VISIBLE
+        binding.ibSearch.visibility = View.VISIBLE
+        binding.etSearch.visibility = View.GONE
+        binding.ibSearchBack.visibility = View.GONE
     }
 
 }

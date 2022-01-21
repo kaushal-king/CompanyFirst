@@ -6,19 +6,66 @@
     android:layout_height="match_parent"
     tools:context=".ui.movie.MovieGridActivity">
 
-    <TextView
-        android:id="@+id/tv_list_title"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_list_title"
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
-        android:gravity="center"
-        android:maxLines="1"
-        tools:text="Movie list"
-        android:textAlignment="center"
-        android:textColor="#000000"
-        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:weightSum="5"
+            >
+            <TextView
+                android:id="@+id/tv_list_title"
+                android:layout_width="match_parent"
+                android:layout_height="?actionBarSize"
+                android:gravity="center"
+                tools:text="Movie list"
+                android:layout_marginLeft="?actionBarSize"
+                android:textColor="#000000"
+                android:textSize="20sp"
+                android:layout_weight="1"
+
+               />
+            <ImageButton
+                android:id="@+id/ib_search"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:src="@drawable/ic_baseline_search_24"
+
+                android:layout_weight="4"/>
+            <ImageButton
+                android:id="@+id/ib_search_back"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:src="@drawable/ic_baseline_arrow_back_24"
+                android:visibility="gone"
+                android:layout_weight="1"/>
+            <EditText
+                android:id="@+id/et_search"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="4"
+                android:visibility="gone"
+                android:maxLines="1"
+                android:inputType="text"
+                android:singleLine="true"
+                android:imeOptions="actionSearch"
+                android:hint="@string/search_movie"
+                android:drawableLeft="@drawable/ic_baseline_search_24"
+                />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
 
 
     <androidx.recyclerview.widget.RecyclerView
@@ -26,11 +73,12 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="vertical"
+        android:layout_marginTop="5dp"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_list_title"
+        app:layout_constraintTop_toBottomOf="@+id/cv_list_title"
         app:layout_constraintVertical_bias="0.0"
 
         app:spanCount="3" />
