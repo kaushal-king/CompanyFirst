@@ -40,6 +40,8 @@ class MovieListFragement : Fragment() {
         _binding =  FragmentMovieListBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
+        binding.cvProgressPopular.visibility=View.VISIBLE
+        binding.cvProgressTop.visibility=View.VISIBLE
         loadTopRated()
         loadPopular()
 
@@ -70,6 +72,8 @@ class MovieListFragement : Fragment() {
     }
 
     private fun loadPopular() {
+        binding.cvProgressPopular.visibility=View.VISIBLE
+
         var client = ApiClient()
         var api = client.getClient()?.create(Api::class.java)
         var call = api?.popularList(getString(R.string.apikey))
@@ -83,9 +87,12 @@ class MovieListFragement : Fragment() {
                     listMovie=listMovie.take(4)
                     adapter = MovieCardAdapter(listMovie, activity!!, "popular")
                     binding.rvPopular.adapter = adapter
+                    binding.cvProgressPopular.visibility=View.GONE
+
                 } else {
                     Toast.makeText(activity, getString(R.string.toast_message), Toast.LENGTH_SHORT)
                         .show()
+
 
                 }
             }
@@ -94,12 +101,15 @@ class MovieListFragement : Fragment() {
 
                 Toast.makeText(activity, t.localizedMessage + "", Toast.LENGTH_SHORT)
                     .show()
+
             }
         })
 
     }
 
     private fun loadTopRated() {
+
+        binding.cvProgressTop.visibility=View.VISIBLE
         var client = ApiClient()
         var api = client.getClient()?.create(Api::class.java)
         var call = api?.topRatedlist(getString(R.string.apikey))
@@ -113,6 +123,7 @@ class MovieListFragement : Fragment() {
                     listMovie=listMovie.take(4)
                     adapter = MovieCardAdapter(listMovie, activity!!, "top")
                     binding.rvTopRate.adapter = adapter
+                    binding.cvProgressTop.visibility=View.GONE
                 } else {
                     Toast.makeText(activity, getString(R.string.toast_message), Toast.LENGTH_SHORT)
                         .show()

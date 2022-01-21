@@ -50,6 +50,7 @@ class MovieGridActivity : AppCompatActivity() {
                 binding.etSearch.visibility = View.VISIBLE
                 binding.ibSearchBack.visibility = View.VISIBLE
 
+
             }
         })
 
@@ -82,7 +83,7 @@ class MovieGridActivity : AppCompatActivity() {
             true
         }
 
-
+        binding.cvProgressGrid.visibility   =View.VISIBLE
         loadMovie()
 
     }
@@ -91,11 +92,12 @@ class MovieGridActivity : AppCompatActivity() {
     private fun searchMovie(searchText: String) {
 
         var filterList: List<MovieDetailsDataClass> =
-            listMovie.filter { movie -> movie.title.contains(searchText, ignoreCase = true) }
+            listMovie.filter { movie -> movie.title.lowercase().startsWith(searchText.lowercase()) }
 
         Log.e("TAG", "searchMovie: "+filterList, )
         if(filterList.isEmpty()){
-            Toast.makeText(this@MovieGridActivity,getString(R.string.toast_filter_message),Toast.LENGTH_LONG)
+            adapter?.filterList(filterList)
+            Toast.makeText(this@MovieGridActivity,getString(R.string.toast_filter_message),Toast.LENGTH_LONG).show()
         }
         else{
             adapter?.filterList(filterList)
@@ -104,6 +106,7 @@ class MovieGridActivity : AppCompatActivity() {
     }
 
     private fun loadMovie() {
+        binding.cvProgressGrid.visibility   =View.VISIBLE
         var client = ApiClient()
         var api = client.getClient()?.create(Api::class.java)
         var call = api?.popularList(getString(R.string.apikey))
@@ -116,6 +119,7 @@ class MovieGridActivity : AppCompatActivity() {
                     listMovie = response.body()?.results as List<MovieDetailsDataClass>
                     adapter = MovieGridAdapter(listMovie, this@MovieGridActivity, movieType)
                     binding.rvMovieList.adapter = adapter
+                    binding.cvProgressGrid.visibility   =View.GONE
                 } else {
                     Toast.makeText(
                         applicationContext,

@@ -11,31 +11,37 @@
     <string name="menu_home">Converter</string>
     <string name="menu_gallery">Calculator</string>
     <string name="menu_movie">Movie</string>
+
     <string name="currency_ans_title">Converted Currency : </string>
     <string name="usd">usd</string>
     <string name="pound">pound</string>
     <string name="euro">euro</string>
+
     <string name="converter_title">Currency Converter Tool"</string>
     <string name="select_currency">Select Currency</string>
+
+    <string name="calculator_title">Simple Calculator</string>
+    <string name="answer_is">answer is:</string>
+
     <string name="overview">Overview</string>
     <string name="top_rated_movie">Top Rated Movie</string>
     <string name="popular_movie">Popular Movie</string>
     <string name="see_all"><![CDATA[See all >>]]></string>
-    <string name="calculator_title">Simple Calculator</string>
-    <string name="answer_is">answer is:</string>
-    <string name="imageurl_link">https://image.tmdb.org/t/p/w500/</string>
     <string name="release_date">Release Date:</string>
     <string name="language">Language:</string>
     <string name="adult">18+</string>
     <string name="UA">U/A</string>
+
+    <string name="imageurl_link">https://image.tmdb.org/t/p/w500/</string>
     <string name="apikey">b7cd3340a794e5a2f35e3abb820b497f</string>
+
     <string name="toast_message">some error occured</string>
-    <string name="toast_filter_message">"No Data Found"</string>
+    <string name="toast_filter_message">No Data Found</string>
     <string name="et_error">fill with number</string>
 
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
-    <!-- TODO: Remove or change this placeholder text -->
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="search_movie">Search Movie</string>
 

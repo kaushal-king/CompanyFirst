@@ -59,6 +59,7 @@
                 android:singleLine="true"
                 android:imeOptions="actionSearch"
                 android:hint="@string/search_movie"
+                android:focusable="true"
                 android:drawableLeft="@drawable/ic_baseline_search_24"
                 />
 
@@ -68,6 +69,24 @@
 
 
 
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_progress_grid"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cv_list_title"
+        app:layout_constraintVertical_bias="0.0"
+        android:visibility="gone">
+        <ProgressBar
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+
+            />
+    </androidx.cardview.widget.CardView>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_movie_list"
         android:layout_width="match_parent"

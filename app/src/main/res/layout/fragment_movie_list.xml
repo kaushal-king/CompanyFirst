@@ -5,10 +5,26 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:viewBindingIgnore="false"
-    tools:context=".ui.movie.MovieListActivity">
+>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_progress_top"
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView3"
+            android:visibility="gone"
+            android:layout_marginTop="16dp">
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                />
+        </androidx.cardview.widget.CardView>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_top_rate"
@@ -48,6 +64,23 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/rv_top_rate" />
 
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_progress_popular"
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView4"
+            android:visibility="gone"
+            >
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                />
+        </androidx.cardview.widget.CardView>
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_popular"
             android:layout_width="match_parent"
