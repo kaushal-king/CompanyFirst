@@ -14,12 +14,12 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.the.firsttask.ConstantHelper
-import com.the.firsttask.dataclass.MovieDetailsDataClass
-import com.the.firsttask.ui.movie.MovieeDetailsActivity
+import com.the.firsttask.DataBase.MovieEntity
 import com.the.firsttask.R
+import com.the.firsttask.ui.movie.MovieeDetailsActivity
 
 class MovieCardAdapter(
-    private val mList: List<MovieDetailsDataClass>,
+    private val mList: List<MovieEntity>,
     var mCtx: Context,
     var movieType: String
 ) : RecyclerView.Adapter<MovieCardAdapter.ViewHolder>() {
@@ -65,6 +65,7 @@ class MovieCardAdapter(
         val item = mList[position]
 
         Glide.with(mCtx).load(mCtx.getString(R.string.imageurl_link) + item.backdropPath)
+            .placeholder(R.drawable.imageloading).error(R.drawable.imageloading)
             .into(holder.imageView)
         holder.movieName.text = item.title
         holder.rating.rating = (item.voteAverage.div(2)).toFloat()

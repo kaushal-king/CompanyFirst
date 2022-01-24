@@ -11,12 +11,13 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.the.firsttask.ConstantHelper
+import com.the.firsttask.DataBase.MovieEntity
 import com.the.firsttask.dataclass.MovieDetailsDataClass
 import com.the.firsttask.ui.movie.MovieeDetailsActivity
 import com.the.firsttask.R
 
 class MovieGridAdapter(
-    private var mList: List<MovieDetailsDataClass>,
+     var mList: List<MovieEntity>,
     var mCtx: Context,
     var movieType: String
 ) : RecyclerView.Adapter<MovieGridAdapter.ViewHolder>() {
@@ -67,6 +68,7 @@ class MovieGridAdapter(
         val item = mList[position]
 
         Glide.with(mCtx).load(mCtx.getString(R.string.imageurl_link) + item.backdropPath)
+            .placeholder(R.drawable.imageloading).error(R.drawable.imageloading)
             .into(holder.imageView)
         holder.movieName.text = item.title
         holder.rating.rating = (item.voteAverage.div(2)).toFloat()
@@ -78,10 +80,12 @@ class MovieGridAdapter(
         return mList.count()
     }
 
-    fun filterList(filterllist: List<MovieDetailsDataClass?>) {
-        mList = filterllist as List<MovieDetailsDataClass>
+    fun filterList(filterllist: List<MovieEntity?>) {
+        mList = filterllist as List<MovieEntity>
         notifyDataSetChanged()
     }
+
+
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 

@@ -4,8 +4,9 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.the.firsttask.ConstantHelper
+import com.the.firsttask.DataBase.MovieEntity
 import com.the.firsttask.R
-import com.the.firsttask.dataclass.MovieDetailsDataClass
+
 import com.the.firsttask.databinding.ActivityMovieedetailsBinding
 
 class MovieeDetailsActivity : AppCompatActivity() {
@@ -18,9 +19,9 @@ class MovieeDetailsActivity : AppCompatActivity() {
         setContentView(view)
 
 
-        val model: MovieDetailsDataClass
+        val model: MovieEntity
         val bundle = intent.getBundleExtra(ConstantHelper.BUNDLE_DETAILS_BUNDLE)
-        model = bundle?.getSerializable(ConstantHelper.BUNDLE_DETAILS_MOVIE) as MovieDetailsDataClass
+        model = bundle?.getSerializable(ConstantHelper.BUNDLE_DETAILS_MOVIE) as MovieEntity
 
 
         Glide.with(applicationContext).load(getString(R.string.imageurl_link) + model.backdropPath)
