@@ -16,6 +16,7 @@ class ThemeUtils {
 
         fun changeToTheme(activityName: Activity){
             activity=activityName
+
             activity.finish()
             activity.startActivity(Intent(activity, activity.javaClass))
         }

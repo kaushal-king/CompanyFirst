@@ -53,7 +53,18 @@ class NetworkUtils {
         }
 
 
+        fun unregisterCallback(context:Context){
 
+            val connectivityManager = getSystemService(context, ConnectivityManager::class.java)
+            try {
+                connectivityManager?.unregisterNetworkCallback(connectivityCallback)
+            }
+            catch (e:Exception) {
+                Log.d("network", "unregister failed")
+            }
+
+            Log.e("network", "unregisterCallback: ", )
+        }
     }
 
 }

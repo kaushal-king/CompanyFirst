@@ -5,6 +5,7 @@ import androidx.room.*
 
 @Dao
 interface MovieDao {
+
     @Query("SELECT * FROM movieinfo ")
     fun getAllMovie():List<MovieEntity>?
 

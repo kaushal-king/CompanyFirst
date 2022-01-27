@@ -29,9 +29,10 @@ class MovieListFragment : Fragment() {
     private var _binding: FragmentMovieListBinding? = null
     private val binding get() = _binding!!
     private var adapter: MovieCardAdapter? = null
-
     lateinit var listMovie: List<MovieEntity>
     lateinit var viewModel: MovieListViewModel
+    lateinit var lastNetworkState:String
+
 
 
     override fun onCreateView(
@@ -40,25 +41,16 @@ class MovieListFragment : Fragment() {
     ): View {
         _binding = FragmentMovieListBinding.inflate(inflater, container, false)
         val root: View = binding.root
-
         viewModel = ViewModelProvider(requireActivity()).get(MovieListViewModel::class.java)
-
+        Log.e("network", "onCreateView", )
+        lastNetworkState=ConstantHelper.NETWORK_LOST
         loadOffline()
+
+
         binding.cvProgressPopular.visibility = View.VISIBLE
 
 
-        NetworkUtils.getNetworkState().observe(requireActivity(), { networkState ->
-            when (networkState) {
-                ConstantHelper.NETWORK_CONNECT -> {
-                    loadTopRated()
-                    loadPopular()
-                    Log.e("network", "api call")
-                }
-                ConstantHelper.NETWORK_LOST -> {
-                    Log.e("network", ConstantHelper.NETWORK_LOST)
-                }
-            }
-        })
+
 //        binding.cvProgressTop.visibility=View.VISIBLE
 
 
@@ -83,7 +75,7 @@ class MovieListFragment : Fragment() {
 
 
     private fun loadOffline() {
-        viewModel.getAllMovieObservers().observe(viewLifecycleOwner, {
+     viewModel.getAllMovieObservers().observe(viewLifecycleOwner) {
 
 
             //popular Movie
@@ -111,7 +103,7 @@ class MovieListFragment : Fragment() {
             binding.cvProgressTop.visibility = View.GONE
 
 
-        })
+        }
 
     }
 
@@ -135,7 +127,7 @@ class MovieListFragment : Fragment() {
 
 
                 } else {
-                    Toast.makeText(activity, getString(R.string.toast_message), Toast.LENGTH_SHORT)
+                    Toast.makeText(activity,getString(R.string.toast_message), Toast.LENGTH_SHORT)
                         .show()
 
 
@@ -193,4 +185,41 @@ class MovieListFragment : Fragment() {
 //
 //        super.onCreateOptionsMenu(menu, inflater)
 //    }
+
+    override fun onPause() {
+        NetworkUtils.getNetworkState().removeObservers(requireActivity())
+        super.onPause()
+    }
+
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        Log.e("TAG", "onCreate: ", )
+        super.onCreate(savedInstanceState)
+    }
+
+    override fun onResume() {
+        Log.e("network", "onResume ", )
+        NetworkUtils.getNetworkState().observe(requireActivity()) { networkState ->
+            when (networkState) {
+                ConstantHelper.NETWORK_CONNECT -> {
+                    if(lastNetworkState!=ConstantHelper.NETWORK_CONNECT){
+                        loadTopRated()
+                        loadPopular()
+                        Log.e("network", "api call")
+                    }
+                    lastNetworkState=ConstantHelper.NETWORK_CONNECT
+                }
+                ConstantHelper.NETWORK_LOST -> {
+                    lastNetworkState=ConstantHelper.NETWORK_LOST
+                    Log.e("network", ConstantHelper.NETWORK_LOST)
+                }
+
+            }
+        }
+        super.onResume()
+    }
+
+
+
+
 }

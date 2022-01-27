@@ -2,6 +2,7 @@ package com.the.firsttask
 
 
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
@@ -29,15 +30,13 @@ class DrawerActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-
         ThemeUtils.onActivityCreateSetTheme(this)
         LanguageUtils.setLocale(this@DrawerActivity)
 
         binding = ActivityDrawerBinding.inflate(layoutInflater)
 
         setContentView(binding.root)
-        NetworkUtils.checkConnectivity(this)
+
 
 
 
@@ -127,6 +126,17 @@ class DrawerActivity : AppCompatActivity() {
         }
 
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onResume() {
+        Log.e("network", "onResume:Drawer ", )
+        NetworkUtils.checkConnectivity(this@DrawerActivity)
+        super.onResume()
+    }
+
+    override fun onPause() {
+        NetworkUtils.unregisterCallback(this@DrawerActivity)
+        super.onPause()
     }
 
 
