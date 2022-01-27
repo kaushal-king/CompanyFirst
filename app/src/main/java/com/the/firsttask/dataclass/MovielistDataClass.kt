@@ -1,6 +1,5 @@
 import com.google.gson.annotations.SerializedName
-import com.the.firsttask.DataBase.MovieEntity
-import com.the.firsttask.dataclass.MovieDetailsDataClass
+import com.the.firsttask.database.MovieEntity
 
 
 data class MovielistDataClass(

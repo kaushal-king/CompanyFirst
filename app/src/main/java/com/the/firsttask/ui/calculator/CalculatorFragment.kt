@@ -6,9 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.textfield.TextInputEditText
-import com.the.firsttask.ConstantHelper
+import com.the.firsttask.utils.ConstantHelper
 import com.the.firsttask.R
 import com.the.firsttask.databinding.FragmentCalculatorBinding
 
@@ -96,23 +95,23 @@ class CalculatorFragment : Fragment() {
                 var ans: Double
                 ans = firstentry + secondentry
                 ans = "%.5f".format(ans).toDouble()
-                answer.text = ans.toString()
+                answer.text = getString(R.string.answer_is) +ans.toString()
 
             } else if (type == ConstantHelper.CAL_MINUS) {
                 var ans: Double
                 ans = firstentry - secondentry
                 ans = "%.5f".format(ans).toDouble()
-                answer.text = ans.toString()
+                answer.text =  getString(R.string.answer_is) +ans.toString()
             } else if (type == ConstantHelper.CAL_DEVIDE) {
                 var ans: Double
                 ans = firstentry / secondentry
                 ans = "%.5f".format(ans).toDouble()
-                answer.text = ans.toString()
+                answer.text =  getString(R.string.answer_is) +ans.toString()
             } else if (type == ConstantHelper.CAL_MULTIPLY) {
                 var ans: Double
                 ans = firstentry * secondentry
                 ans = "%.5f".format(ans).toDouble()
-                answer.text = ans.toString()
+                answer.text =  getString(R.string.answer_is) +ans.toString()
             }
 
 

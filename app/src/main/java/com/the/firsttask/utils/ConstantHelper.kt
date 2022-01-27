@@ -1,4 +1,4 @@
-package com.the.firsttask
+package com.the.firsttask.utils
 
 object ConstantHelper {
 
@@ -11,5 +11,13 @@ object ConstantHelper {
     const val CAL_MINUS="minus"
     const val CAL_DEVIDE="devide"
     const val CAL_MULTIPLY="multiply"
+    const val SHARED_PREFERENCE_ID="MyPrefsTheme"
+    const val THEME_NIGHT="night"
+    const val THEME_NORMAL="normal"
+    const val THEME_CHRISTMAS="christmas"
+    const val LANGUAGE_HINDI="hi"
+    const val LANGUAGE_ENGLISH="en"
+    const val NETWORK_CONNECT="connect"
+    const val NETWORK_LOST="lost"
 
 }

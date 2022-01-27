@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/white"
+    android:background="?bgLightColor"
     tools:context=".ui.calculator.CalculatorFragment">
 
     <TextView
@@ -15,16 +15,18 @@
         android:textAlignment="center"
         android:text="@string/calculator_title"
         android:textSize="20sp"
-        android:textColor="#000000"
+        android:textColor="?textColor"
         android:maxLines="1"/>
 
     <com.google.android.material.textfield.TextInputLayout
 
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        style="@style/textinput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="10dp"
+        android:textColorHint="?metaTextColor"
+        app:hintTextColor="?textColor"
         >
 
         <com.google.android.material.textfield.TextInputEditText
@@ -32,15 +34,18 @@
             android:inputType="numberDecimal"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:textColor="?textColor"
             android:hint="first number" />
     </com.google.android.material.textfield.TextInputLayout>
     <com.google.android.material.textfield.TextInputLayout
 
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        style="@style/textinput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="10dp"
+        android:textColorHint="?metaTextColor"
+        app:hintTextColor="?textColor"
         >
 
         <com.google.android.material.textfield.TextInputEditText
@@ -48,6 +53,7 @@
             android:inputType="numberDecimal"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:textColor="?textColor"
             android:hint="Second number" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -59,13 +65,14 @@
         android:textAlignment="center"
         android:text="@string/answer_is"
         android:textSize="20sp"
-        android:textColor="#000000"
+        android:textColor="?textColor"
         android:maxLines="1"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:background="?bgLightColor"
         android:orientation="horizontal">
         <Button
             android:layout_width="wrap_content"
@@ -73,7 +80,9 @@
             android:id="@+id/btn_plus"
             android:text="+"
             android:layout_margin="5dp"
+            android:backgroundTint="?buttonColor"
             android:layout_weight="1"
+            android:textColor="@color/white"
             />
         <Button
             android:layout_width="wrap_content"
@@ -81,6 +90,8 @@
             android:id="@+id/btn_minus"
             android:text="-"
             android:layout_margin="5dp"
+            android:backgroundTint="?buttonColor"
+            android:textColor="@color/white"
             android:layout_weight="1"/>
         <Button
             android:layout_width="wrap_content"
@@ -88,6 +99,8 @@
             android:id="@+id/btn_multiply"
             android:text="*"
             android:layout_margin="5dp"
+            android:backgroundTint="?buttonColor"
+            android:textColor="@color/white"
             android:layout_weight="1"/>
         <Button
             android:layout_width="wrap_content"
@@ -95,6 +108,8 @@
             android:id="@+id/btn_devide"
             android:text="/"
             android:layout_margin="5dp"
+            android:backgroundTint="?buttonColor"
+            android:textColor="@color/white"
             android:layout_weight="1"/>
 
     </LinearLayout>

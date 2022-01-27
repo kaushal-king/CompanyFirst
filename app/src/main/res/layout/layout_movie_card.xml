@@ -4,20 +4,19 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:background="@drawable/ripple"
-
     android:layout_marginBottom="15dp"
+    android:backgroundTint="?bgLightColor"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
         <LinearLayout
             android:id="@+id/ll_movie"
-
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:background="@drawable/ripple"
-
-            android:layout_marginHorizontal="12dp">
+            android:layout_marginHorizontal="12dp"
+            android:backgroundTint="?bgLightColor">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cv_movie"
@@ -40,7 +39,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text=""
-                android:textColor="@color/black"
+                android:textColor="?textColor"
                 android:fontFamily="@font/poppins_medium"
                 android:layout_marginTop="5dp"
                 android:textSize="15sp"
@@ -53,6 +52,8 @@
                 android:layout_height="20dp"
                 style="?android:attr/ratingBarStyleSmall"
                 android:numStars="5"
+                android:progressTint="?colorAccent"
+                android:progressBackgroundTint="?editTextOutline"
                 android:layout_marginLeft="5dp"
                 />
         </LinearLayout>

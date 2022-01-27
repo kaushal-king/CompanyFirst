@@ -11,6 +11,7 @@
     <string name="menu_home">Converter</string>
     <string name="menu_gallery">Calculator</string>
     <string name="menu_movie">Movie</string>
+    <string name="menu_setting">Setting</string>
 
     <string name="currency_ans_title">Converted Currency : </string>
     <string name="usd">usd</string>
@@ -44,5 +45,15 @@
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="search_movie">Search Movie</string>
+    <string name="version_name">Version Name :</string>
+
+    <string name="theme_normal">Normal</string>
+    <string name="theme_dark">Dark</string>
+    <string name="theme_christmas">Christmas</string>
+    <string name="language_english">English</string>
+    <string name="language_hindi">Hindi</string>
+
+    <string name="select_theme">Select Theme</string>
+    <string name="select_language">Select Language</string>
 
 </resources>

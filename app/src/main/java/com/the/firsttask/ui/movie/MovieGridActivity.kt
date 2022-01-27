@@ -4,7 +4,6 @@ import android.app.Activity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
@@ -12,28 +11,28 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.ViewModelProvider
-import com.the.firsttask.ConstantHelper
-import com.the.firsttask.DataBase.MovieEntity
 import com.the.firsttask.R
 import com.the.firsttask.adapter.MovieGridAdapter
+import com.the.firsttask.database.MovieEntity
 import com.the.firsttask.databinding.ActivityMovieGridBinding
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import kotlin.concurrent.thread
+import com.the.firsttask.utils.ConstantHelper
+import com.the.firsttask.utils.LanguageUtils
+import com.the.firsttask.utils.ThemeUtils
 
 class MovieGridActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMovieGridBinding
-    var adapter: MovieGridAdapter? = null
-    var listMovie: List<MovieEntity>? = null
-    lateinit var movieType: String
-    lateinit var view: ConstraintLayout
-    lateinit var viewModel: MovieListViewModel
+    private var adapter: MovieGridAdapter? = null
+    private var listMovie: List<MovieEntity>? = null
+    private lateinit var movieType: String
+    private lateinit var view: ConstraintLayout
+    private lateinit var viewModel: MovieListViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        ThemeUtils.onActivityCreateSetTheme(this)
+        LanguageUtils.setLocale(this)
         binding = ActivityMovieGridBinding.inflate(layoutInflater)
+
         view = binding.root
         setContentView(view)
         viewModel = ViewModelProvider(this@MovieGridActivity).get(MovieListViewModel::class.java)
@@ -44,24 +43,21 @@ class MovieGridActivity : AppCompatActivity() {
         } else {
             binding.tvListTitle.text = getString(R.string.popular_movie)
         }
+        binding.ibSearchBack.visibility = View.VISIBLE
+        binding.ibSearch.setOnClickListener {
+            binding.tvListTitle.visibility = View.GONE
+            binding.ibSearch.visibility = View.GONE
+            binding.etSearch.visibility = View.VISIBLE
+        }
 
-        binding.ibSearch.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(p0: View?) {
-                binding.tvListTitle.visibility = View.GONE
-                binding.ibSearch.visibility = View.GONE
-                binding.etSearch.visibility = View.VISIBLE
-                binding.ibSearchBack.visibility = View.VISIBLE
-
-
-            }
-        })
-
-        binding.ibSearchBack.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(p0: View?) {
+        binding.ibSearchBack.setOnClickListener {
+            if (binding.etSearch.visibility == View.GONE) {
+                onBackPressed()
+            } else {
                 binding.etSearch.setText("")
                 searchToggle()
             }
-        })
+        }
 
         binding.etSearch.addTextChangedListener(object : TextWatcher {
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
@@ -89,15 +85,14 @@ class MovieGridActivity : AppCompatActivity() {
         loadMovie()
 
 
-
     }
 
 
     private fun searchMovie(searchText: String) {
 
-        var filterList: List<MovieEntity> =
+        val filterList: List<MovieEntity> =
             listMovie!!.filter { movie ->
-                movie.title.trim().lowercase().startsWith(searchText.lowercase())
+                movie.title.trim().contains(searchText, ignoreCase = true)
             }
 
         if (filterList.isEmpty()) {
@@ -109,32 +104,30 @@ class MovieGridActivity : AppCompatActivity() {
 
     }
 
-    private  fun loadMovie() {
+    private fun loadMovie() {
         binding.cvProgressGrid.visibility = View.VISIBLE
         viewModel.getAllMovie()
-        viewModel.getAllMovieObservers()?.observe(this@MovieGridActivity, {movi->
-            listMovie=movi.filter { movieEntity ->movieEntity.type==movieType  }
+        viewModel.getAllMovieObservers().observe(this@MovieGridActivity, { movi ->
+            listMovie = movi.filter { movieEntity -> movieEntity.type == movieType }
             setMovieView(listMovie!!)
         })
-        }
+    }
 
     private fun setMovieView(listMovie: List<MovieEntity>) {
-        if(!listMovie?.isEmpty()!!)
-        {
-            adapter = MovieGridAdapter(listMovie!!, this@MovieGridActivity, movieType)
+        if (listMovie.isNotEmpty()) {
+            adapter = MovieGridAdapter(listMovie, this@MovieGridActivity, movieType)
             binding.rvMovieList.adapter = adapter
             binding.rvMovieList.adapter?.notifyDataSetChanged()
             binding.cvProgressGrid.visibility = View.GONE
-        }
-        else{
-            Toast.makeText(this@MovieGridActivity,"No data Found",Toast.LENGTH_LONG).show()
+        } else {
+            Toast.makeText(this@MovieGridActivity, "No data Found", Toast.LENGTH_LONG).show()
             binding.cvProgressGrid.visibility = View.GONE
         }
     }
 
 
     override fun onBackPressed() {
-        if (!binding.etSearch.text.isEmpty()) {
+        if (binding.etSearch.text.isNotEmpty()) {
             searchToggle()
             binding.etSearch.setText("")
         } else {
@@ -154,7 +147,8 @@ class MovieGridActivity : AppCompatActivity() {
         binding.tvListTitle.visibility = View.VISIBLE
         binding.ibSearch.visibility = View.VISIBLE
         binding.etSearch.visibility = View.GONE
-        binding.ibSearchBack.visibility = View.GONE
+
+
     }
 
 }

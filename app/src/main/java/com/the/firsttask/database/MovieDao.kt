@@ -1,6 +1,5 @@
-package com.the.firsttask.DataBase
+package com.the.firsttask.database
 
-import androidx.lifecycle.LiveData
 import androidx.room.*
 
 

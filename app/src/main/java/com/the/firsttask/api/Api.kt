@@ -1,7 +1,6 @@
 package com.the.firsttask.api
 
 import MovielistDataClass
-import com.the.firsttask.DataBase.MovieEntity
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Currency Converter</string>
+    <string name="title_activity_drawer">drawer</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_search">Search</string>
+
+    <string name="menu_home">कनवर्टर</string>
+    <string name="menu_gallery">कैलकुलेटर</string>
+    <string name="menu_movie">चलचित्र</string>
+    <string name="menu_setting">सेटिंग</string>
+
+    <string name="currency_ans_title">परिवर्तित मुद्रा: </string>
+    <string name="usd">usd</string>
+    <string name="pound">pound</string>
+    <string name="euro">euro</string>
+
+    <string name="converter_title">मुद्रा परिवर्तक उपकरण"</string>
+    <string name="select_currency">मुद्रा चुनें</string>
+
+    <string name="calculator_title">सरल कैलकुलेटर</string>
+    <string name="answer_is">जवाब है:</string>
+
+    <string name="overview">अवलोकन</string>
+    <string name="top_rated_movie">टॉप रेटेड मूवी</string>
+    <string name="popular_movie">लोकप्रिय फिल्म</string>
+    <string name="see_all"><![CDATA[सभी देखें >>]]></string>
+    <string name="release_date">रिलीज़ की तारीख:</string>
+    <string name="language">भाषा:</string>
+    <string name="adult">18+</string>
+    <string name="UA">U/A</string>
+
+    <string name="imageurl_link">https://image.tmdb.org/t/p/w500/</string>
+    <string name="apikey">b7cd3340a794e5a2f35e3abb820b497f</string>
+
+    <string name="toast_message">कुछ त्रुटि हुई</string>
+    <string name="toast_filter_message">डाटा प्राप्त नहीं हुआ</string>
+    <string name="et_error">संख्या के साथ भरें</string>
+
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="search_movie">मूवी खोजें</string>
+    <string name="version_name">Version Name :</string>
+
+    <string name="theme_normal">Normal</string>
+    <string name="theme_dark">Dark</string>
+    <string name="theme_christmas">Christmas</string>
+
+    <string name="language_english">English</string>
+    <string name="language_hindi">Hindi</string>
+
+    <string name="select_theme">थीम चुने</string>
+    <string name="select_language">भाषा चुने</string>
+</resources>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="bgColor" format="color"/>
+    <attr name="bgLightColor" format="color"/>
+    <attr name="bgToolbar" format="color"/>
+    <attr name="buttonColor" format="color"/>
+    <attr name="editTextOutline" format="color"/>
+    <attr name="editTextSelectedOutline" format="color"/>
+    <attr name="textColor" format="color"/>
+    <attr name="toolbarTextColor" format="color"/>
+    <attr name="metaTextColor" format="color"/>
+    <attr name="hintTextColor" format="color"/>
+</resources>

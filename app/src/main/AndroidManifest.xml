@@ -2,12 +2,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.the.firsttask">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:configChanges="keyboardHidden|orientation"
 
         android:theme="@style/Theme.Firsttask">
         <activity
@@ -15,7 +17,7 @@
             android:exported="false"
             android:theme="@style/Theme.Firsttask.NoActionBar"/>
         <activity
-            android:name=".ui.movie.MovieeDetailsActivity"
+            android:name=".ui.movie.MovieDetailsActivity"
             android:exported="false"
             android:theme="@style/Theme.Firsttask.NoActionBar" />
 

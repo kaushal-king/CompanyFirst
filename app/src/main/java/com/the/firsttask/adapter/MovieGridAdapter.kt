@@ -10,10 +10,9 @@ import android.widget.*
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.the.firsttask.ConstantHelper
-import com.the.firsttask.DataBase.MovieEntity
-import com.the.firsttask.dataclass.MovieDetailsDataClass
-import com.the.firsttask.ui.movie.MovieeDetailsActivity
+import com.the.firsttask.utils.ConstantHelper
+import com.the.firsttask.database.MovieEntity
+import com.the.firsttask.ui.movie.MovieDetailsActivity
 import com.the.firsttask.R
 
 class MovieGridAdapter(
@@ -37,7 +36,7 @@ class MovieGridAdapter(
 
         viewholder.movie.setOnClickListener(object : View.OnClickListener {
             override fun onClick(view: View?) {
-                val intent = Intent(mCtx, MovieeDetailsActivity::class.java)
+                val intent = Intent(mCtx, MovieDetailsActivity::class.java)
                 var model = mList.get(viewholder.adapterPosition)
                 val bundle = Bundle()
                 bundle.putSerializable(ConstantHelper.BUNDLE_DETAILS_MOVIE, model)
@@ -48,7 +47,7 @@ class MovieGridAdapter(
 
         viewholder.imageView.setOnClickListener(object : View.OnClickListener {
             override fun onClick(view: View?) {
-                val intent = Intent(mCtx, MovieeDetailsActivity::class.java)
+                val intent = Intent(mCtx, MovieDetailsActivity::class.java)
                 var model = mList.get(viewholder.adapterPosition)
                 val bundle = Bundle()
                 bundle.putSerializable(ConstantHelper.BUNDLE_DETAILS_MOVIE, model)

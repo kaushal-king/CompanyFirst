@@ -1,10 +1,7 @@
 package com.the.firsttask
 
 
-import android.annotation.SuppressLint
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuInflater
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
@@ -15,7 +12,12 @@ import com.google.android.material.navigation.NavigationView
 import com.the.firsttask.databinding.ActivityDrawerBinding
 import com.the.firsttask.ui.calculator.CalculatorFragment
 import com.the.firsttask.ui.converter.ConverterFragment
-import com.the.firsttask.ui.movie.MovieListFragement
+import com.the.firsttask.ui.movie.MovieListFragment
+import com.the.firsttask.ui.setting.SettingFragment
+import com.the.firsttask.utils.LanguageUtils
+import com.the.firsttask.utils.NetworkUtils
+import com.the.firsttask.utils.ThemeUtils
+import java.util.*
 
 
 class DrawerActivity : AppCompatActivity() {
@@ -24,12 +26,20 @@ class DrawerActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDrawerBinding
     private var drawerToggle: ActionBarDrawerToggle? = null
 
-    @SuppressLint("ResourceAsColor")
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+
+        ThemeUtils.onActivityCreateSetTheme(this)
+        LanguageUtils.setLocale(this@DrawerActivity)
+
         binding = ActivityDrawerBinding.inflate(layoutInflater)
+
         setContentView(binding.root)
+        NetworkUtils.checkConnectivity(this)
+
+
 
         setSupportActionBar(binding.appBarDrawer.toolbar)
         supportActionBar?.elevation = 0F
@@ -50,6 +60,8 @@ class DrawerActivity : AppCompatActivity() {
         if (savedInstanceState == null) {
             binding.navView.menu.performIdentifierAction(R.id.nav_converter, 0)
         }
+
+        binding.tvVersionName.text = getString(R.string.version_name) + BuildConfig.VERSION_NAME
 
     }
 
@@ -80,7 +92,8 @@ class DrawerActivity : AppCompatActivity() {
         when (menuItem.itemId) {
             R.id.nav_converter -> fragmentClass = ConverterFragment::class.java
             R.id.nav_calculator -> fragmentClass = CalculatorFragment::class.java
-            R.id.nav_movie -> fragmentClass = MovieListFragement::class.java
+            R.id.nav_movie -> fragmentClass = MovieListFragment::class.java
+            R.id.nav_setting -> fragmentClass = SettingFragment::class.java
             else -> fragmentClass = ConverterFragment::class.java
         }
 
@@ -115,7 +128,6 @@ class DrawerActivity : AppCompatActivity() {
 
         return super.onOptionsItemSelected(item)
     }
-
 
 
 }

@@ -3,18 +3,23 @@ package com.the.firsttask.ui.movie
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
-import com.the.firsttask.ConstantHelper
-import com.the.firsttask.DataBase.MovieEntity
+import com.the.firsttask.utils.ConstantHelper
+import com.the.firsttask.database.MovieEntity
 import com.the.firsttask.R
 
-import com.the.firsttask.databinding.ActivityMovieedetailsBinding
+import com.the.firsttask.databinding.ActivityMoviedetailsBinding
+import com.the.firsttask.utils.LanguageUtils
+import com.the.firsttask.utils.ThemeUtils
+import java.text.SimpleDateFormat
 
-class MovieeDetailsActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityMovieedetailsBinding
+class MovieDetailsActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityMoviedetailsBinding
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
-        binding = ActivityMovieedetailsBinding.inflate(layoutInflater)
+        ThemeUtils.onActivityCreateSetTheme(this)
+        LanguageUtils.setLocale(this)
+        binding = ActivityMoviedetailsBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
 
@@ -30,8 +35,12 @@ class MovieeDetailsActivity : AppCompatActivity() {
         binding.tvRating.text = ((model.voteAverage.div(2)).toInt() / 2).toString()
         binding.tvVote.text = model.voteCount.toString()
         binding.tvTitleMovie.text = model.title
-        binding.tvDate.text = getString(R.string.release_date)+ model.releaseDate
-        binding.tvLaungage.text = getString(R.string.language)+ model.originalLanguage
+
+
+        val formatter = SimpleDateFormat("yyyy-MM-dd").parse(model.releaseDate)
+        val formateDate = SimpleDateFormat("dd-MMM-yyyy")
+        binding.tvDate.text = getString(R.string.release_date)+"  "+formateDate.format(formatter)
+        binding.tvLaungage.text = getString(R.string.language)+"  "+model.originalLanguage
         binding.tvOverviewDetails.text = model.overview
 
         if (model.adult) {

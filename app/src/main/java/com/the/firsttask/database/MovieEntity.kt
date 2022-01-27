@@ -1,18 +1,19 @@
-package com.the.firsttask.dataclass
+package com.the.firsttask.database
 
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
 
-data class MovieDetailsDataClass(
-    @SerializedName("adult")
+@Entity(tableName = "movieinfo")
+data class MovieEntity(
+    @SerializedName("id")
+    @PrimaryKey(autoGenerate = false) @ColumnInfo(name = "id") val id: Int = 0,
     val adult: Boolean,
     @SerializedName("backdrop_path")
     val backdropPath: String,
-    @SerializedName("genre_ids")
-    val genreIds: List<Int>,
-    @SerializedName("id")
-    val id: Int,
     @SerializedName("original_language")
     val originalLanguage: String,
     @SerializedName("original_title")
@@ -25,12 +26,13 @@ data class MovieDetailsDataClass(
     val posterPath: String,
     @SerializedName("release_date")
     val releaseDate: String,
-    @SerializedName("title")
     val title: String,
-    @SerializedName("video")
     val video: Boolean,
     @SerializedName("vote_average")
     val voteAverage: Double,
     @SerializedName("vote_count")
-    val voteCount: Int
+    val voteCount: Int,
+    @ColumnInfo(name = "movietype") var type: String,
 ) : Serializable
+
+

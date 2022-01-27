@@ -3,14 +3,13 @@ package com.the.firsttask.ui.movie
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import com.the.firsttask.DataBase.MovieEntity
-import com.the.firsttask.DataBase.RoomDb
+import com.the.firsttask.database.MovieEntity
+import com.the.firsttask.database.RoomDb
 
 class MovieListViewModel(application: Application) : AndroidViewModel(application) {
-    lateinit var allMovie: MutableLiveData<List<MovieEntity>>
+    var allMovie: MutableLiveData<List<MovieEntity>> = MutableLiveData()
 
     init {
-        allMovie = MutableLiveData()
         getAllMovie()
     }
 

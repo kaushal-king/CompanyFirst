@@ -10,14 +10,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
+
         >
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
+            style="@style/MyToolbarStyle"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            android:backgroundTint="@color/white"
+            app:titleTextColor="?toolbarTextColor"
+
              />
 
     </com.google.android.material.appbar.AppBarLayout>

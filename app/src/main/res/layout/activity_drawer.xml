@@ -18,7 +18,18 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
-        app:menu="@menu/menu_main_drawer" />
+        app:menu="@menu/menu_main_drawer" >
+        <TextView
+            android:id="@+id/tv_version_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/version_name"
+            android:layout_gravity="bottom"
+            android:gravity="center"
+            android:layout_marginBottom="20dp"
+            android:textColor="@color/black"
+            />
+    </com.google.android.material.navigation.NavigationView>
 
 
 </androidx.drawerlayout.widget.DrawerLayout>

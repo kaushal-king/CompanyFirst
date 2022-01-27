@@ -1,4 +1,4 @@
-package com.the.firsttask.DataBase
+package com.the.firsttask.database
 
 import android.content.Context
 import androidx.room.Database

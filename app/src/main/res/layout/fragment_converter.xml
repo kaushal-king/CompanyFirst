@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="?bgLightColor"
     tools:context=".ui.converter.ConverterFragment">
 
     <TextView
@@ -14,7 +14,7 @@
         android:layout_marginTop="24dp"
         android:text="@string/converter_title"
         android:textSize="20sp"
-        android:textColor="#000000"
+        android:textColor="?textColor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -26,7 +26,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="32dp"
         android:text="@string/select_currency"
-        android:textColor="#000000"
+        android:textColor="?textColor"
         android:textSize="15sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
@@ -38,7 +38,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
         android:text= "@string/currency_ans_title"
-        android:textColor="#000000"
+        android:textColor="?textColor"
         android:textSize="17sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
@@ -60,6 +60,7 @@
             android:text="@string/usd"
             android:layout_marginTop="10dp"
             android:checked="true"
+            android:textColor="?textColor"
             />
         <RadioButton
             android:id="@+id/rd_Pound"
@@ -68,6 +69,7 @@
             android:text="@string/pound"
             android:layout_marginTop="10dp"
             android:checked="false"
+            android:textColor="?textColor"
             />
         <RadioButton
             android:id="@+id/rd_Euro"
@@ -76,18 +78,21 @@
             android:text="@string/euro"
             android:layout_marginTop="10dp"
             android:checked="false"
+            android:textColor="?textColor"
             />
     </RadioGroup>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        style="@style/textinput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        android:textColorHint="?metaTextColor"
+        app:hintTextColor="?textColor"
         app:layout_constraintTop_toBottomOf="@+id/radiogroup">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -95,6 +100,7 @@
             android:inputType="numberDecimal"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:textColor="?textColor"
             android:hint="Ammount in INR" />
     </com.google.android.material.textfield.TextInputLayout>
 
