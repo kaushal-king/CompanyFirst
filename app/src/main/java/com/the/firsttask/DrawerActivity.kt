@@ -129,7 +129,7 @@ class DrawerActivity : AppCompatActivity() {
     }
 
     override fun onResume() {
-        Log.e("network", "onResume:Drawer ", )
+
         NetworkUtils.checkConnectivity(this@DrawerActivity)
         super.onResume()
     }

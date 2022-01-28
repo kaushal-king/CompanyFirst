@@ -14,5 +14,7 @@
     <color name="redlight">#A21F1F</color>
     <color name="green">#148C07</color>
     <color name="selectedColor">#723700B3</color>
-
+    <color name="actionButton">#F85E2E</color>
+    <color name="numberactionButton">#455A64</color>
+    <color name="orange">#F57C00</color>
 </resources>

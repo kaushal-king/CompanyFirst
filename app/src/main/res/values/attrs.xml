@@ -4,6 +4,7 @@
     <attr name="bgLightColor" format="color"/>
     <attr name="bgToolbar" format="color"/>
     <attr name="buttonColor" format="color"/>
+    <attr name="calculatorAction" format="color"/>
     <attr name="editTextOutline" format="color"/>
     <attr name="editTextSelectedOutline" format="color"/>
     <attr name="textColor" format="color"/>

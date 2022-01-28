@@ -27,6 +27,7 @@ class LanguageUtils {
             val resources: Resources = context.resources
             val configuration: Configuration = resources.getConfiguration()
             configuration.setLocale(locale)
+
             resources.updateConfiguration(configuration, resources.getDisplayMetrics())
 
         }

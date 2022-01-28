@@ -42,7 +42,7 @@ class MovieListFragment : Fragment() {
         _binding = FragmentMovieListBinding.inflate(inflater, container, false)
         val root: View = binding.root
         viewModel = ViewModelProvider(requireActivity()).get(MovieListViewModel::class.java)
-        Log.e("network", "onCreateView", )
+
         lastNetworkState=ConstantHelper.NETWORK_LOST
         loadOffline()
 
@@ -192,26 +192,23 @@ class MovieListFragment : Fragment() {
     }
 
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        Log.e("TAG", "onCreate: ", )
-        super.onCreate(savedInstanceState)
-    }
+
 
     override fun onResume() {
-        Log.e("network", "onResume ", )
+
         NetworkUtils.getNetworkState().observe(requireActivity()) { networkState ->
             when (networkState) {
                 ConstantHelper.NETWORK_CONNECT -> {
                     if(lastNetworkState!=ConstantHelper.NETWORK_CONNECT){
                         loadTopRated()
                         loadPopular()
-                        Log.e("network", "api call")
+
                     }
                     lastNetworkState=ConstantHelper.NETWORK_CONNECT
                 }
                 ConstantHelper.NETWORK_LOST -> {
                     lastNetworkState=ConstantHelper.NETWORK_LOST
-                    Log.e("network", ConstantHelper.NETWORK_LOST)
+
                 }
 
             }

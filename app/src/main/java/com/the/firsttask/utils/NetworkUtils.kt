@@ -30,14 +30,14 @@ class NetworkUtils {
             override fun onAvailable(network: Network) {
                 isConnected = true
                 networkUtil.networkState.postValue(ConstantHelper.NETWORK_CONNECT)
-                Log.e("network",ConstantHelper.NETWORK_CONNECT )
+                Log.d("network",ConstantHelper.NETWORK_CONNECT )
 
             }
 
             override fun onLost(network: Network) {
                 isConnected = false
                 networkUtil.networkState.postValue(ConstantHelper.NETWORK_LOST)
-                Log.e("network", ConstantHelper.NETWORK_LOST)
+                Log.d("network", ConstantHelper.NETWORK_LOST)
             }
         }
 
@@ -49,7 +49,7 @@ class NetworkUtils {
                     .addCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
                     .build(), connectivityCallback
             )
-            Log.e("network", "registerNetworkCallback: ")
+            Log.d("network", "registerNetworkCallback: ")
         }
 
 
@@ -63,7 +63,7 @@ class NetworkUtils {
                 Log.d("network", "unregister failed")
             }
 
-            Log.e("network", "unregisterCallback: ", )
+            Log.d("network", "unregisterCallback: ", )
         }
     }
 

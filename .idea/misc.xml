@@ -3,9 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/company/app/src/main/res/drawable/button_background_ripple.xml" value="0.128" />
+        <entry key="..\:/company/app/src/main/res/drawable/calculator_button_action.xml" value="0.128" />
         <entry key="..\:/company/app/src/main/res/drawable/cardviewbg.xml" value="0.13854166666666667" />
         <entry key="..\:/company/app/src/main/res/drawable/ic_baseline_arrow_back_24.xml" value="0.13541666666666666" />
         <entry key="..\:/company/app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.13958333333333334" />
+        <entry key="..\:/company/app/src/main/res/drawable/number_button_ripple.xml" value="0.128" />
         <entry key="..\:/company/app/src/main/res/drawable/ripple.xml" value="0.13854166666666667" />
         <entry key="..\:/company/app/src/main/res/drawable/side_nav_bar.xml" value="0.13177083333333334" />
         <entry key="..\:/company/app/src/main/res/drawable/smile.xml" value="0.13177083333333334" />
@@ -17,7 +20,7 @@
         <entry key="..\:/company/app/src/main/res/layout/activity_movielist.xml" value="0.176" />
         <entry key="..\:/company/app/src/main/res/layout/app_bar_drawer.xml" value="0.1" />
         <entry key="..\:/company/app/src/main/res/layout/content_drawer.xml" value="0.1" />
-        <entry key="..\:/company/app/src/main/res/layout/fragment_calculator.xml" value="0.12708333333333333" />
+        <entry key="..\:/company/app/src/main/res/layout/fragment_calculator.xml" value="0.136" />
         <entry key="..\:/company/app/src/main/res/layout/fragment_converter.xml" value="0.12239583333333333" />
         <entry key="..\:/company/app/src/main/res/layout/fragment_movie_list.xml" value="0.136" />
         <entry key="..\:/company/app/src/main/res/layout/fragment_setting_fragement.xml" value="0.1734375" />
