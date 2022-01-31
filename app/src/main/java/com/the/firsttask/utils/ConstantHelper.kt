@@ -19,5 +19,7 @@ object ConstantHelper {
     const val LANGUAGE_ENGLISH="en"
     const val NETWORK_CONNECT="connect"
     const val NETWORK_LOST="lost"
+    const val ALARM_DESCRIPTION="description"
+    const val NOTIFICATION_CHANNEL_ID="alarm"
 
 }

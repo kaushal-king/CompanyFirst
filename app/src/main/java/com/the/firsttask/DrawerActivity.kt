@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.google.android.material.navigation.NavigationView
 import com.the.firsttask.databinding.ActivityDrawerBinding
+import com.the.firsttask.ui.alarm.AlarmFragment
 import com.the.firsttask.ui.calculator.CalculatorFragment
 import com.the.firsttask.ui.converter.ConverterFragment
 import com.the.firsttask.ui.movie.MovieListFragment
@@ -93,6 +94,7 @@ class DrawerActivity : AppCompatActivity() {
             R.id.nav_calculator -> fragmentClass = CalculatorFragment::class.java
             R.id.nav_movie -> fragmentClass = MovieListFragment::class.java
             R.id.nav_setting -> fragmentClass = SettingFragment::class.java
+            R.id.nav_alarm -> fragmentClass = AlarmFragment::class.java
             else -> fragmentClass = ConverterFragment::class.java
         }
 

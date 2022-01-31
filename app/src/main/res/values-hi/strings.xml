@@ -13,6 +13,7 @@
     <string name="menu_gallery">कैलकुलेटर</string>
     <string name="menu_movie">चलचित्र</string>
     <string name="menu_setting">सेटिंग</string>
+    <string name="menu_alarm">Alarm</string>
 
     <string name="currency_ans_title">परिवर्तित मुद्रा: </string>
     <string name="usd">usd</string>

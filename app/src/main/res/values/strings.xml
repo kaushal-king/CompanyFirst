@@ -12,6 +12,7 @@
     <string name="menu_gallery">Calculator</string>
     <string name="menu_movie">Movie</string>
     <string name="menu_setting">Setting</string>
+    <string name="menu_alarm">Alarm</string>
 
     <string name="currency_ans_title">Converted Currency : </string>
     <string name="usd">usd</string>

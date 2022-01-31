@@ -17,6 +17,11 @@
             android:icon="@drawable/ic_baseline_movie_filter_24"
             android:title="@string/menu_movie" />
         <item
+            android:id="@+id/nav_alarm"
+            android:icon="@drawable/ic_baseline_access_alarm_24"
+            android:title="@string/menu_alarm" />
+
+        <item
             android:id="@+id/nav_setting"
             
             android:icon="@drawable/ic_baseline_settings_24"
