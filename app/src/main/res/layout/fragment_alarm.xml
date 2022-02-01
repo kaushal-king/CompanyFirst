@@ -81,4 +81,14 @@
         android:textColor="@color/white"
         />
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_alarm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="12dp"
+        android:layout_marginTop="16dp"
+        android:orientation="vertical"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/layout_alarm_card" />
+
 </LinearLayout>

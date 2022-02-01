@@ -20,6 +20,7 @@ object ConstantHelper {
     const val NETWORK_CONNECT="connect"
     const val NETWORK_LOST="lost"
     const val ALARM_DESCRIPTION="description"
-    const val NOTIFICATION_CHANNEL_ID="alarm"
+    const val ALARM_ID="id"
+    const val NOTIFICATION_CHANNEL_ID="the.firsttask"
 
 }

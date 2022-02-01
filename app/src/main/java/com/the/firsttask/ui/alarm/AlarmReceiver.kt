@@ -12,6 +12,7 @@ import android.os.Build
 import android.util.Log
 import androidx.core.app.NotificationCompat
 import com.the.firsttask.R
+import com.the.firsttask.database.RoomDb
 import com.the.firsttask.utils.ConstantHelper
 
 
@@ -20,9 +21,11 @@ class AlarmReceiver : BroadcastReceiver() {
     lateinit var  notification:Notification
     var notificationManager: NotificationManager? = null
     var channel: NotificationChannel? = null
+
     override fun onReceive(context: Context, intent: Intent) {
 
         val description= intent.extras?.getString(ConstantHelper.ALARM_DESCRIPTION)
+        val id= intent.extras?.getInt(ConstantHelper.ALARM_ID)
         Log.e("TAG", "onReceive: "+description)
         notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         val soundUri = Uri.parse("android.resource://" + context.packageName + "/" + R.raw.notification)
@@ -53,7 +56,11 @@ class AlarmReceiver : BroadcastReceiver() {
             notificationManager?.createNotificationChannel(channel!!)
         }
         assert (notificationManager != null)
-        notificationManager!!.notify(0, notification)
+        notificationManager!!.notify(System.currentTimeMillis().toInt(), notification)
+        val alarmDao = RoomDb.getAppDatabase((context))?.alarmDao()
+        alarmDao?.deleteAlarm(id!!)
+
+
 
 //                                .setContentIntent(pendingIntent)
 
