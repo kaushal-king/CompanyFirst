@@ -19,17 +19,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="32dp"
-        android:text="@string/select_currency"
-        android:textColor="?textColor"
-        android:textSize="15sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+<!--    <TextView-->
+<!--        android:id="@+id/textView2"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="24dp"-->
+<!--        android:layout_marginTop="32dp"-->
+<!--        android:text="@string/select_currency"-->
+<!--        android:textColor="?textColor"-->
+<!--        android:textSize="15sp"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/textView" />-->
 
     <TextView
         android:id="@+id/txt_ans"
@@ -43,44 +43,59 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
 
-    <RadioGroup
-        android:id="@+id/radiogroup"
+    <TextView
+        android:id="@+id/txt_all_ans"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@+id/textView2"
-        app:layout_constraintTop_toTopOf="@+id/textView2"
-        app:layout_constraintBottom_toBottomOf="@+id/textView2"
-        android:orientation="horizontal"
-        android:paddingBottom="10dp">
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/txt_all_answer"
+        android:textColor="?textColor"
+        android:textSize="17sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/txt_ans"
+        app:layout_constraintTop_toBottomOf="@+id/txt_ans" />
 
-        <RadioButton
-            android:id="@+id/rd_Usd"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/usd"
-            android:layout_marginTop="10dp"
-            android:checked="true"
-            android:textColor="?textColor"
-            />
-        <RadioButton
-            android:id="@+id/rd_Pound"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/pound"
-            android:layout_marginTop="10dp"
-            android:checked="false"
-            android:textColor="?textColor"
-            />
-        <RadioButton
-            android:id="@+id/rd_Euro"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/euro"
-            android:layout_marginTop="10dp"
-            android:checked="false"
-            android:textColor="?textColor"
-            />
-    </RadioGroup>
+
+    <!--    <RadioGroup-->
+<!--        android:id="@+id/radiogroup"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:layout_constraintStart_toEndOf="@+id/textView2"-->
+<!--        app:layout_constraintTop_toTopOf="@+id/textView2"-->
+<!--        app:layout_constraintBottom_toBottomOf="@+id/textView2"-->
+<!--        android:orientation="horizontal"-->
+<!--        android:paddingBottom="10dp">-->
+
+<!--        <RadioButton-->
+<!--            android:id="@+id/rd_Usd"-->
+<!--            android:layout_width="fill_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="@string/usd"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            android:checked="true"-->
+<!--            android:textColor="?textColor"-->
+<!--            />-->
+<!--        <RadioButton-->
+<!--            android:id="@+id/rd_Pound"-->
+<!--            android:layout_width="fill_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="@string/pound"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            android:checked="false"-->
+<!--            android:textColor="?textColor"-->
+<!--            />-->
+<!--        <RadioButton-->
+<!--            android:id="@+id/rd_Euro"-->
+<!--            android:layout_width="fill_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="@string/euro"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            android:checked="false"-->
+<!--            android:textColor="?textColor"-->
+<!--            />-->
+<!--    </RadioGroup>-->
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout"
@@ -88,20 +103,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="16dp"
         android:textColorHint="?metaTextColor"
         app:hintTextColor="?textColor"
-        app:layout_constraintTop_toBottomOf="@+id/radiogroup">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/ed_amount"
-            android:inputType="numberDecimal"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:textColor="?textColor"
-            android:hint="Ammount in INR" />
+            android:hint="Amount in INR"
+            android:inputType="numberDecimal"
+            android:textColor="?textColor" />
     </com.google.android.material.textfield.TextInputLayout>
 
 
