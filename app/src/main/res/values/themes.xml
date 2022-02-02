@@ -25,7 +25,7 @@
         <item name="editTextSelectedOutline">@color/purple_500</item>
         <item name="editTextOutline">@color/lightgrey</item>
         <item name="hintTextColor">@color/lightgrey</item>
-
+        <item name="android:windowContentTransitions">true</item>
     </style>
 
     <style name="Theme.Firsttask.NoActionBar">
@@ -65,7 +65,7 @@
         <item name="editTextSelectedOutline">@color/white</item>
         <item name="hintTextColor">@color/greywhite</item>
         <item name="drawerArrowStyle">@style/DrawerHamburgerStyleNight</item>
-
+        <item name="android:windowContentTransitions">true</item>
     </style>
 
 
@@ -97,6 +97,7 @@
         <item name="editTextSelectedOutline">@color/green</item>
         <item name="hintTextColor">@color/green</item>
         <item name="drawerArrowStyle">@style/DrawerHamburgerStyleChristmas</item>
+        <item name="android:windowContentTransitions">true</item>
     </style>
 
 

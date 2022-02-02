@@ -32,6 +32,7 @@
             android:layout_height="match_parent"
             android:src="@drawable/godfather"
             android:scaleType="centerCrop"
+            android:transitionName="@string/moviebanner"
             />
     </androidx.cardview.widget.CardView>
             <TextView

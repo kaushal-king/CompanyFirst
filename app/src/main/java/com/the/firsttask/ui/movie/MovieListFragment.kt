@@ -92,7 +92,7 @@ class MovieListFragment : Fragment() {
             adapter = MovieCardAdapter(
                 popularList.take(4),
                 requireActivity(),
-                ConstantHelper.MOVIE_TYPE_POPULAR
+                ConstantHelper.MOVIE_TYPE_POPULAR,requireActivity()
             )
             binding.rvPopular.adapter = adapter
             binding.rvPopular.adapter?.notifyDataSetChanged()
@@ -104,7 +104,7 @@ class MovieListFragment : Fragment() {
             val topList =
                 it.filter { movieEntity -> movieEntity.type == ConstantHelper.MOVIE_TYPE_TOP }
             adapter =
-                MovieCardAdapter(topList.take(4), requireActivity(), ConstantHelper.MOVIE_TYPE_TOP)
+                MovieCardAdapter(topList.take(4), requireActivity(), ConstantHelper.MOVIE_TYPE_TOP,requireActivity())
             binding.rvTopRate.adapter = adapter
             binding.rvTopRate.adapter?.notifyDataSetChanged()
             binding.cvProgressTop.visibility = View.GONE

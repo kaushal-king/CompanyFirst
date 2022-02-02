@@ -1,5 +1,6 @@
 package com.the.firsttask.adapter
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -8,6 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.cardview.widget.CardView
+import androidx.core.app.ActivityOptionsCompat
+import androidx.core.view.ViewCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.the.firsttask.utils.ConstantHelper
@@ -18,46 +21,52 @@ import com.the.firsttask.R
 class MovieGridAdapter(
      var mList: List<MovieEntity>,
     var mCtx: Context,
-    var movieType: String
+    var activity: Activity
 ) : RecyclerView.Adapter<MovieGridAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.layout_movie_card, parent, false)
-        val viewholder: ViewHolder = ViewHolder(view)
+        val viewHolder: ViewHolder = ViewHolder(view)
 
 
-        val layoutParams = viewholder.movieCard.layoutParams
+        val layoutParams = viewHolder.movieCard.layoutParams
         layoutParams.height = 300
         layoutParams.width = GridLayout.LayoutParams.MATCH_PARENT
-        val layoutParamsMain = viewholder.mainMovieLayout.layoutParams
+        val layoutParamsMain = viewHolder.mainMovieLayout.layoutParams
         layoutParamsMain.width = LinearLayout.LayoutParams.MATCH_PARENT
 
 
-        viewholder.movie.setOnClickListener(object : View.OnClickListener {
+        viewHolder.movie.setOnClickListener(object : View.OnClickListener {
             override fun onClick(view: View?) {
                 val intent = Intent(mCtx, MovieDetailsActivity::class.java)
-                var model = mList.get(viewholder.adapterPosition)
+                var options: ActivityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(activity,viewHolder.imageView,
+                    ViewCompat.getTransitionName(viewHolder.imageView)!!
+                )
+                var model = mList.get(viewHolder.adapterPosition)
                 val bundle = Bundle()
                 bundle.putSerializable(ConstantHelper.BUNDLE_DETAILS_MOVIE, model)
                 intent.putExtra(ConstantHelper.BUNDLE_DETAILS_BUNDLE, bundle)
-                mCtx.startActivity(intent)
+                mCtx.startActivity(intent,options.toBundle())
             }
         })
 
-        viewholder.imageView.setOnClickListener(object : View.OnClickListener {
+        viewHolder.imageView.setOnClickListener(object : View.OnClickListener {
             override fun onClick(view: View?) {
                 val intent = Intent(mCtx, MovieDetailsActivity::class.java)
-                var model = mList.get(viewholder.adapterPosition)
+                var options: ActivityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(activity,viewHolder.imageView,
+                    ViewCompat.getTransitionName(viewHolder.imageView)!!
+                )
+                var model = mList.get(viewHolder.adapterPosition)
                 val bundle = Bundle()
                 bundle.putSerializable(ConstantHelper.BUNDLE_DETAILS_MOVIE, model)
                 intent.putExtra(ConstantHelper.BUNDLE_DETAILS_BUNDLE, bundle)
-                mCtx.startActivity(intent)
+                mCtx.startActivity(intent,options.toBundle())
             }
         })
 
 
-        return viewholder
+        return viewHolder
 
     }
 

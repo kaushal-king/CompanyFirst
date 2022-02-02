@@ -127,7 +127,7 @@ class MovieGridActivity : AppCompatActivity() {
 
     private fun setMovieView(listMovie: List<MovieEntity>) {
         if (listMovie.isNotEmpty()) {
-            adapter = MovieGridAdapter(listMovie, this@MovieGridActivity, movieType)
+            adapter = MovieGridAdapter(listMovie, this@MovieGridActivity, this)
             binding.rvMovieList.adapter = adapter
             binding.rvMovieList.adapter?.notifyDataSetChanged()
             binding.cvProgressGrid.visibility = View.GONE

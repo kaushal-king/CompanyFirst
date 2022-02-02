@@ -21,6 +21,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/godfather"
         android:scaleType="centerCrop"
+        android:transitionName="@string/moviebanner"
         />
 
         <ImageView
