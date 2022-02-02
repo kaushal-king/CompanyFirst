@@ -84,6 +84,17 @@ class MovieGridActivity : AppCompatActivity() {
         binding.cvProgressGrid.visibility = View.VISIBLE
         loadMovie()
 
+        binding.srMovieGrid.setOnRefreshListener {
+            binding.srMovieGrid.isRefreshing=true
+            loadMovie()
+            if (binding.etSearch.visibility != View.GONE) {
+
+                binding.etSearch.setText("")
+                searchToggle()
+            }
+
+        }
+
 
     }
 
@@ -111,6 +122,7 @@ class MovieGridActivity : AppCompatActivity() {
             listMovie = movi.filter { movieEntity -> movieEntity.type == movieType }
             setMovieView(listMovie!!)
         })
+
     }
 
     private fun setMovieView(listMovie: List<MovieEntity>) {
@@ -119,9 +131,11 @@ class MovieGridActivity : AppCompatActivity() {
             binding.rvMovieList.adapter = adapter
             binding.rvMovieList.adapter?.notifyDataSetChanged()
             binding.cvProgressGrid.visibility = View.GONE
+            binding.srMovieGrid.isRefreshing=false
         } else {
-            Toast.makeText(this@MovieGridActivity, "No data Found", Toast.LENGTH_LONG).show()
+            Toast.makeText(this@MovieGridActivity, getString(R.string.toast_filter_message), Toast.LENGTH_LONG).show()
             binding.cvProgressGrid.visibility = View.GONE
+            binding.srMovieGrid.isRefreshing=false
         }
     }
 

@@ -96,6 +96,17 @@
 
             />
     </androidx.cardview.widget.CardView>
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/sr_movie_grid"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cv_list_title"
+        app:layout_constraintVertical_bias="0.0"
+        >
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_movie_list"
         android:layout_width="match_parent"
@@ -110,4 +121,5 @@
         app:layout_constraintVertical_bias="0.0"
 
         app:spanCount="3" />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

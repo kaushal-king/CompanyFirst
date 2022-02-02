@@ -16,6 +16,7 @@ import com.the.firsttask.ui.calculator.CalculatorFragment
 import com.the.firsttask.ui.converter.ConverterFragment
 import com.the.firsttask.ui.movie.MovieListFragment
 import com.the.firsttask.ui.setting.SettingFragment
+import com.the.firsttask.utils.ConstantHelper
 import com.the.firsttask.utils.LanguageUtils
 import com.the.firsttask.utils.NetworkUtils
 import com.the.firsttask.utils.ThemeUtils
@@ -41,6 +42,8 @@ class DrawerActivity : AppCompatActivity() {
 
 
 
+
+
         setSupportActionBar(binding.appBarDrawer.toolbar)
         supportActionBar?.elevation = 0F
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -59,6 +62,14 @@ class DrawerActivity : AppCompatActivity() {
 
         if (savedInstanceState == null) {
             binding.navView.menu.performIdentifierAction(R.id.nav_converter, 0)
+        }
+
+        if (intent.extras !=null){
+
+            if(intent.extras!!.getString(ConstantHelper.ALARM)=="Alarm")
+            {
+                binding.navView.menu.performIdentifierAction(R.id.nav_alarm, 0)
+            }
         }
 
         binding.tvVersionName.text = getString(R.string.version_name) + BuildConfig.VERSION_NAME

@@ -114,8 +114,9 @@
             android:id="@+id/ed_amount"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="Amount in INR"
+            android:hint="@string/amount_in_inr"
             android:inputType="numberDecimal"
+            android:maxLength="9"
             android:textColor="?textColor" />
     </com.google.android.material.textfield.TextInputLayout>
 

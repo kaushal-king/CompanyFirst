@@ -52,7 +52,7 @@
                 android:layout_height="20dp"
                 style="?android:attr/ratingBarStyleSmall"
                 android:numStars="5"
-                android:progressTint="?colorAccent"
+                android:progressTint="?colorSecondary"
                 android:progressBackgroundTint="?editTextOutline"
                 android:layout_marginLeft="5dp"
                 />

@@ -15,6 +15,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.the.firsttask.R
 import com.the.firsttask.adapter.AlarmAdapter
 import com.the.firsttask.database.AlarmEntity
 import com.the.firsttask.databinding.FragmentAlarmBinding
@@ -49,32 +50,21 @@ class AlarmFragment : Fragment() {
 
         alarmManager = requireContext().getSystemService(ALARM_SERVICE) as AlarmManager
 
-        binding.edAlarmTime.setOnFocusChangeListener { _, isTrue ->
-            if (isTrue) {
-                binding.edAlarmTime.setText("")
-                openTimePickerDialog(false)
-            }
 
-        }
         binding.edAlarmTime.setOnClickListener {
-            if (binding.edAlarmTime.hasFocus()) {
-                binding.edAlarmTime.setText("")
-                openTimePickerDialog(false)
-            }
+
+            binding.edAlarmTime.setText("")
+            openTimePickerDialog(false)
+
         }
 
 
-        binding.edAlarmDate.setOnFocusChangeListener { _, isTrue ->
-            if (isTrue) {
-                binding.edAlarmDate.setText("")
-                openDatePickerDialog()
-            }
-        }
+
         binding.edAlarmDate.setOnClickListener {
-            if (binding.edAlarmDate.hasFocus()) {
-                binding.edAlarmDate.setText("")
-                openDatePickerDialog()
-            }
+
+            binding.edAlarmDate.setText("")
+            openDatePickerDialog()
+
         }
 
         binding.btnSaveAlarm.setOnClickListener {
@@ -122,7 +112,7 @@ class AlarmFragment : Fragment() {
             binding.rvAlarm.adapter?.notifyDataSetChanged()
             //binding.cvProgressGrid.visibility = View.GONE
         } else {
-            Toast.makeText(requireContext(), "No data Found", Toast.LENGTH_LONG).show()
+            Toast.makeText(requireContext(), getString(R.string.toast_filter_message), Toast.LENGTH_LONG).show()
             // binding.cvProgressGrid.visibility = View.GONE
         }
     }

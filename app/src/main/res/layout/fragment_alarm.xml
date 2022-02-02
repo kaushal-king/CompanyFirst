@@ -5,6 +5,8 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+    android:focusableInTouchMode="true"
+    android:background="?bgLightColor"
     tools:context=".ui.alarm.AlarmFragment">
     <com.google.android.material.textfield.TextInputLayout
         style="@style/textinput"
@@ -16,17 +18,16 @@
         app:layout_constraintStart_toStartOf="parent"
         android:textColorHint="?metaTextColor"
         app:hintTextColor="?textColor"
-
         app:layout_constraintTop_toBottomOf="@+id/radiogroup">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/ed_alarm_time"
-            android:inputType="numberDecimal"
+            android:inputType="none"
+            android:focusable="false"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:textColor="?textColor"
-            android:editable="false"
-            android:hint="Time Of Alarm" />
+            android:hint="@string/time_of_alarm" />
     </com.google.android.material.textfield.TextInputLayout>
     <com.google.android.material.textfield.TextInputLayout
         style="@style/textinput"
@@ -42,12 +43,12 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/ed_alarm_date"
-            android:inputType="numberDecimal"
+            android:inputType="none"
+            android:focusable="false"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:textColor="?textColor"
-            android:editable="false"
-            android:hint="Date Of Alarm" />
+            android:hint="@string/date_of_alarm" />
     </com.google.android.material.textfield.TextInputLayout>
     <com.google.android.material.textfield.TextInputLayout
         style="@style/textinput"
@@ -63,18 +64,17 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/ed_description"
-
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:textColor="?textColor"
-            android:hint="Description of Alarm" />
+            android:hint="@string/description_of_alarm" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/btn_save_alarm"
-        android:text="Save Alarm"
+        android:text="@string/save_alarm"
         android:layout_marginTop="15dp"
         android:backgroundTint="?buttonColor"
         android:layout_gravity="center"

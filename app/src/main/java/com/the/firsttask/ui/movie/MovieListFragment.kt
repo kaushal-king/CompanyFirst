@@ -68,6 +68,13 @@ class MovieListFragment : Fragment() {
             startActivity(intent)
         }
 
+        binding.srMovieList.setOnRefreshListener {
+            binding.srMovieList.isRefreshing=true
+            loadPopular()
+            loadTopRated()
+
+        }
+
 
 
         return root
@@ -124,21 +131,23 @@ class MovieListFragment : Fragment() {
                     }
 
                     viewModel.insertMoviesInfo(listMovie)
+                    binding.srMovieList.isRefreshing=false
 
 
                 } else {
-                    Toast.makeText(activity,getString(R.string.toast_message), Toast.LENGTH_SHORT)
+                    Toast.makeText(activity,
+                        getString(R.string.toast_message), Toast.LENGTH_SHORT)
                         .show()
-
+                    binding.srMovieList.isRefreshing=false
 
                 }
             }
 
             override fun onFailure(call: Call<MovielistDataClass>, t: Throwable) {
 
-                Toast.makeText(activity, "Network Error", Toast.LENGTH_SHORT)
+                Toast.makeText(activity, getString(R.string.toast_network_error), Toast.LENGTH_SHORT)
                     .show()
-
+                binding.srMovieList.isRefreshing=false
             }
         })
 
@@ -161,18 +170,21 @@ class MovieListFragment : Fragment() {
                         movieEntity.type = ConstantHelper.MOVIE_TYPE_TOP
                     }
                     viewModel.insertMoviesInfo(listMovie)
+                    binding.srMovieList.isRefreshing=false
 
                 } else {
                     Toast.makeText(activity, getString(R.string.toast_message), Toast.LENGTH_SHORT)
                         .show()
+                    binding.srMovieList.isRefreshing=false
 
                 }
             }
 
             override fun onFailure(call: Call<MovielistDataClass>, t: Throwable) {
 
-                Toast.makeText(activity, "Network Error", Toast.LENGTH_SHORT)
+                Toast.makeText(activity, getString(R.string.toast_network_error), Toast.LENGTH_SHORT)
                     .show()
+                binding.srMovieList.isRefreshing=false
             }
         })
 

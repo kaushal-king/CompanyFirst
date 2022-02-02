@@ -21,6 +21,7 @@ object ConstantHelper {
     const val NETWORK_LOST="lost"
     const val ALARM_DESCRIPTION="description"
     const val ALARM_ID="id"
+    const val ALARM="Alarm"
     const val NOTIFICATION_CHANNEL_ID="the.firsttask"
 
 }
