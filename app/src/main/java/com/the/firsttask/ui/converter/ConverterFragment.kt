@@ -7,10 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import com.the.firsttask.R
 import com.the.firsttask.databinding.FragmentConverterBinding
+import java.lang.String.format
 
 
 class ConverterFragment : Fragment() {
@@ -20,7 +19,7 @@ class ConverterFragment : Fragment() {
     private val binding get() = _binding!!
 
     lateinit var editText: EditText
-    lateinit var answer: TextView
+
     var amounttype: String = ""
 
     override fun onCreateView(
@@ -34,7 +33,9 @@ class ConverterFragment : Fragment() {
         val root: View = binding.root
 
         editText = binding.edAmount
-        answer = binding.txtAllAns
+        binding.tvUsd.text = "0"
+        binding.tvEuro.text = "0"
+        binding.tvPound.text = "0"
 
         editText.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
@@ -62,28 +63,28 @@ class ConverterFragment : Fragment() {
 
     fun calculateamount(inr: String) {
         if (inr.isEmpty()) {
-            answer.text = getString(R.string.txt_all_answer)
+            binding.tvUsd.text = "0"
+            binding.tvEuro.text = "0"
+            binding.tvPound.text = "0"
         } else {
             val enternumber: Double = inr.toDouble()
             var result: Double
-            var txt: String
+
 
             //USD
-            result = enternumber * 0.013
-            result = "%.5f".format(result).toDouble()
-            txt = "USD : $result"
+            result = enternumber * 0.0133535335
+            binding.tvUsd.text = "%.2f".format(result)
+
 
             //POUND
             result = enternumber * 0.0098
-            result = "%.5f".format(result).toDouble()
-            txt = "$txt\nPOUND : $result"
+            binding.tvPound.text = "%.2f".format(result)
 
             //EURO
             result = enternumber * 0.012
-            result = "%.5f".format(result).toDouble()
-            txt = "$txt\nEURO : $result"
+            binding.tvEuro.text = "%.2f".format(result)
 
-            answer.text = txt
+
         }
     }
 }
