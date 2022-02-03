@@ -3,17 +3,23 @@ package com.the.firsttask.ui.movie
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.ktx.analytics
+import com.google.firebase.analytics.ktx.logEvent
+import com.google.firebase.ktx.Firebase
 import com.the.firsttask.utils.ConstantHelper
 import com.the.firsttask.database.MovieEntity
 import com.the.firsttask.R
 
 import com.the.firsttask.databinding.ActivityMoviedetailsBinding
 import com.the.firsttask.utils.LanguageUtils
+import com.the.firsttask.utils.MyFirebaseAnalytics
 import com.the.firsttask.utils.ThemeUtils
 import java.text.SimpleDateFormat
 
 class MovieDetailsActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMoviedetailsBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
@@ -22,7 +28,6 @@ class MovieDetailsActivity : AppCompatActivity() {
         binding = ActivityMoviedetailsBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
-
 
         val model: MovieEntity
         val bundle = intent.getBundleExtra(ConstantHelper.BUNDLE_DETAILS_BUNDLE)
@@ -53,6 +58,14 @@ class MovieDetailsActivity : AppCompatActivity() {
             super.onBackPressed()
         }
 
+
+    }
+
+
+    override fun onResume() {
+        super.onResume()
+
+        MyFirebaseAnalytics.addScreenView("MovieDetailsScreen","MainActivity")
 
     }
 }

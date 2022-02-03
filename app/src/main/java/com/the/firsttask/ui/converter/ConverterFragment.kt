@@ -8,7 +8,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import androidx.fragment.app.Fragment
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.ktx.analytics
+import com.google.firebase.analytics.ktx.logEvent
+import com.google.firebase.ktx.Firebase
 import com.the.firsttask.databinding.FragmentConverterBinding
+import com.the.firsttask.utils.MyFirebaseAnalytics
 import java.lang.String.format
 
 
@@ -20,13 +25,14 @@ class ConverterFragment : Fragment() {
 
     lateinit var editText: EditText
 
+
     var amounttype: String = ""
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
 
         _binding = FragmentConverterBinding.inflate(inflater, container, false)
@@ -86,5 +92,10 @@ class ConverterFragment : Fragment() {
 
 
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        MyFirebaseAnalytics.addScreenView("ConverterScreen","MainActivity")
     }
 }

@@ -15,11 +15,16 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.ktx.analytics
+import com.google.firebase.analytics.ktx.logEvent
+import com.google.firebase.ktx.Firebase
 import com.the.firsttask.R
 import com.the.firsttask.adapter.AlarmAdapter
 import com.the.firsttask.database.AlarmEntity
 import com.the.firsttask.databinding.FragmentAlarmBinding
 import com.the.firsttask.utils.ConstantHelper
+import com.the.firsttask.utils.MyFirebaseAnalytics
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -34,6 +39,7 @@ class AlarmFragment : Fragment() {
     var alarmManager: AlarmManager? = null
     lateinit var viewModel: AlarmViewModel
 
+
     private var adapter: AlarmAdapter? = null
 
 
@@ -44,6 +50,10 @@ class AlarmFragment : Fragment() {
 
         _binding = FragmentAlarmBinding.inflate(inflater, container, false)
         val root: View = binding.root
+
+
+
+
         viewModel = ViewModelProvider(requireActivity()).get(AlarmViewModel::class.java)
 
 
@@ -157,6 +167,12 @@ class AlarmFragment : Fragment() {
             calendar.set(Calendar.SECOND, 0)
             timePickerDialog?.show()
         }
+
+
+    override fun onResume() {
+        super.onResume()
+        MyFirebaseAnalytics.addScreenView("AlarmScreen","MainActivity")
+    }
 
 
 }

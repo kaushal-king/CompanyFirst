@@ -9,7 +9,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.android.gms.tasks.OnSuccessListener
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.ktx.analytics
+import com.google.firebase.iid.FirebaseInstanceIdReceiver
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.messaging.FirebaseMessaging
 import com.the.firsttask.databinding.ActivityDrawerBinding
 import com.the.firsttask.ui.alarm.AlarmFragment
 import com.the.firsttask.ui.calculator.CalculatorFragment
@@ -30,6 +37,7 @@ class DrawerActivity : AppCompatActivity() {
     private var drawerToggle: ActionBarDrawerToggle? = null
 
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         ThemeUtils.onActivityCreateSetTheme(this)
@@ -38,6 +46,8 @@ class DrawerActivity : AppCompatActivity() {
         binding = ActivityDrawerBinding.inflate(layoutInflater)
 
         setContentView(binding.root)
+
+
 
 
 
@@ -73,6 +83,17 @@ class DrawerActivity : AppCompatActivity() {
         }
 
         binding.tvVersionName.text = getString(R.string.version_name) + BuildConfig.VERSION_NAME
+
+        FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
+            if (!task.isSuccessful) {
+                Log.e("TAG", "Fetching FCM registration token failed", task.exception)
+                return@OnCompleteListener
+            }
+            val token = task.result
+            Log.e("TAG", token.toString())
+
+        })
+
 
     }
 

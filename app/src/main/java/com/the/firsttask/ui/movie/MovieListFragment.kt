@@ -10,6 +10,10 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.ktx.analytics
+import com.google.firebase.analytics.ktx.logEvent
+import com.google.firebase.ktx.Firebase
 import com.the.firsttask.R
 import com.the.firsttask.adapter.MovieCardAdapter
 import com.the.firsttask.api.Api
@@ -17,6 +21,7 @@ import com.the.firsttask.api.ApiClient
 import com.the.firsttask.database.MovieEntity
 import com.the.firsttask.databinding.FragmentMovieListBinding
 import com.the.firsttask.utils.ConstantHelper
+import com.the.firsttask.utils.MyFirebaseAnalytics
 import com.the.firsttask.utils.NetworkUtils
 import retrofit2.Call
 import retrofit2.Callback
@@ -32,7 +37,7 @@ class MovieListFragment : Fragment() {
     lateinit var listMovie: List<MovieEntity>
     lateinit var viewModel: MovieListViewModel
     lateinit var lastNetworkState:String
-
+    private lateinit var firebaseAnalytics: FirebaseAnalytics
 
 
     override fun onCreateView(
@@ -42,6 +47,8 @@ class MovieListFragment : Fragment() {
         _binding = FragmentMovieListBinding.inflate(inflater, container, false)
         val root: View = binding.root
         viewModel = ViewModelProvider(requireActivity()).get(MovieListViewModel::class.java)
+        firebaseAnalytics=Firebase.analytics
+
 
         lastNetworkState=ConstantHelper.NETWORK_LOST
         loadOffline()
@@ -58,6 +65,7 @@ class MovieListFragment : Fragment() {
             val intent = Intent(activity, MovieGridActivity::class.java)
             intent.putExtra(ConstantHelper.BUNDLE_MOVIE_TYPE, ConstantHelper.MOVIE_TYPE_TOP)
             startActivity(intent)
+            logSeeAllFirebase("TopMovie")
         }
 
 
@@ -66,6 +74,7 @@ class MovieListFragment : Fragment() {
             val intent = Intent(activity, MovieGridActivity::class.java)
             intent.putExtra(ConstantHelper.BUNDLE_MOVIE_TYPE, ConstantHelper.MOVIE_TYPE_POPULAR)
             startActivity(intent)
+            logSeeAllFirebase("PopularMovie")
         }
 
         binding.srMovieList.setOnRefreshListener {
@@ -225,7 +234,28 @@ class MovieListFragment : Fragment() {
 
             }
         }
+
+        MyFirebaseAnalytics.addScreenView("MovieListScreen","MainActivity")
+
+
         super.onResume()
+    }
+
+    fun logSeeAllFirebase(movieType:String){
+        var bundle=Bundle()
+        if(movieType=="TopMovie"){
+            bundle.putInt("id",R.id.tv_top_all)
+        }
+        else{
+            bundle.putInt("id",R.id.tv_popular_all)
+        }
+
+        firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_ITEM){
+            param(FirebaseAnalytics.Param.ITEM_ID,bundle )
+            param(FirebaseAnalytics.Param.ITEM_NAME, movieType)
+            param(FirebaseAnalytics.Param.CONTENT_TYPE, "TextView")
+        }
+
     }
 
 

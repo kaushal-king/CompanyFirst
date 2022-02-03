@@ -7,10 +7,7 @@ object ConstantHelper {
     const val BUNDLE_DETAILS_MOVIE="moviedetails"
     const val MOVIE_TYPE_TOP="top"
     const val MOVIE_TYPE_POPULAR="popular"
-    const val CAL_PLUS="plus"
-    const val CAL_MINUS="minus"
-    const val CAL_DEVIDE="devide"
-    const val CAL_MULTIPLY="multiply"
+
     const val SHARED_PREFERENCE_ID="MyPrefsTheme"
     const val THEME_NIGHT="night"
     const val THEME_NORMAL="normal"
@@ -23,5 +20,7 @@ object ConstantHelper {
     const val ALARM_ID="id"
     const val ALARM="Alarm"
     const val NOTIFICATION_CHANNEL_ID="the.firsttask"
+    const val PUSHNOTIFICATION_CHANNEL_Name="the.firsttask.firebase"
+    const val PUSHNOTIFICATION_CHANNEL_ID="push_notification"
 
 }
