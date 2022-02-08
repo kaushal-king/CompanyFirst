@@ -15,10 +15,16 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.ktx.analytics
+import com.google.firebase.analytics.ktx.logEvent
+import com.google.firebase.ktx.Firebase
+import com.the.firsttask.R
 import com.the.firsttask.adapter.AlarmAdapter
 import com.the.firsttask.database.AlarmEntity
 import com.the.firsttask.databinding.FragmentAlarmBinding
 import com.the.firsttask.utils.ConstantHelper
+import com.the.firsttask.utils.MyFirebaseAnalytics
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -33,6 +39,7 @@ class AlarmFragment : Fragment() {
     var alarmManager: AlarmManager? = null
     lateinit var viewModel: AlarmViewModel
 
+
     private var adapter: AlarmAdapter? = null
 
 
@@ -43,38 +50,31 @@ class AlarmFragment : Fragment() {
 
         _binding = FragmentAlarmBinding.inflate(inflater, container, false)
         val root: View = binding.root
+
+
+
+
         viewModel = ViewModelProvider(requireActivity()).get(AlarmViewModel::class.java)
 
 
 
         alarmManager = requireContext().getSystemService(ALARM_SERVICE) as AlarmManager
 
-        binding.edAlarmTime.setOnFocusChangeListener { _, isTrue ->
-            if (isTrue) {
-                binding.edAlarmTime.setText("")
-                openTimePickerDialog(false)
-            }
 
-        }
         binding.edAlarmTime.setOnClickListener {
-            if (binding.edAlarmTime.hasFocus()) {
-                binding.edAlarmTime.setText("")
-                openTimePickerDialog(false)
-            }
+
+            binding.edAlarmTime.setText("")
+            openTimePickerDialog(false)
+
         }
 
 
-        binding.edAlarmDate.setOnFocusChangeListener { _, isTrue ->
-            if (isTrue) {
-                binding.edAlarmDate.setText("")
-                openDatePickerDialog()
-            }
-        }
+
         binding.edAlarmDate.setOnClickListener {
-            if (binding.edAlarmDate.hasFocus()) {
-                binding.edAlarmDate.setText("")
-                openDatePickerDialog()
-            }
+
+            binding.edAlarmDate.setText("")
+            openDatePickerDialog()
+
         }
 
         binding.btnSaveAlarm.setOnClickListener {
@@ -122,7 +122,7 @@ class AlarmFragment : Fragment() {
             binding.rvAlarm.adapter?.notifyDataSetChanged()
             //binding.cvProgressGrid.visibility = View.GONE
         } else {
-            Toast.makeText(requireContext(), "No data Found", Toast.LENGTH_LONG).show()
+            Toast.makeText(requireContext(), getString(R.string.toast_filter_message), Toast.LENGTH_LONG).show()
             // binding.cvProgressGrid.visibility = View.GONE
         }
     }
@@ -167,6 +167,12 @@ class AlarmFragment : Fragment() {
             calendar.set(Calendar.SECOND, 0)
             timePickerDialog?.show()
         }
+
+
+    override fun onResume() {
+        super.onResume()
+        MyFirebaseAnalytics.addScreenView("AlarmScreen","MainActivity")
+    }
 
 
 }

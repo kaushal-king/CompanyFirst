@@ -11,12 +11,17 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.ViewModelProvider
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.ktx.analytics
+import com.google.firebase.analytics.ktx.logEvent
+import com.google.firebase.ktx.Firebase
 import com.the.firsttask.R
 import com.the.firsttask.adapter.MovieGridAdapter
 import com.the.firsttask.database.MovieEntity
 import com.the.firsttask.databinding.ActivityMovieGridBinding
 import com.the.firsttask.utils.ConstantHelper
 import com.the.firsttask.utils.LanguageUtils
+import com.the.firsttask.utils.MyFirebaseAnalytics
 import com.the.firsttask.utils.ThemeUtils
 
 class MovieGridActivity : AppCompatActivity() {
@@ -27,6 +32,7 @@ class MovieGridActivity : AppCompatActivity() {
     private lateinit var view: ConstraintLayout
     private lateinit var viewModel: MovieListViewModel
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         ThemeUtils.onActivityCreateSetTheme(this)
@@ -35,6 +41,8 @@ class MovieGridActivity : AppCompatActivity() {
 
         view = binding.root
         setContentView(view)
+
+
         viewModel = ViewModelProvider(this@MovieGridActivity).get(MovieListViewModel::class.java)
 
         movieType = intent.getStringExtra(ConstantHelper.BUNDLE_MOVIE_TYPE).toString()
@@ -84,6 +92,17 @@ class MovieGridActivity : AppCompatActivity() {
         binding.cvProgressGrid.visibility = View.VISIBLE
         loadMovie()
 
+        binding.srMovieGrid.setOnRefreshListener {
+            binding.srMovieGrid.isRefreshing=true
+            loadMovie()
+            if (binding.etSearch.visibility != View.GONE) {
+
+                binding.etSearch.setText("")
+                searchToggle()
+            }
+
+        }
+
 
     }
 
@@ -111,17 +130,20 @@ class MovieGridActivity : AppCompatActivity() {
             listMovie = movi.filter { movieEntity -> movieEntity.type == movieType }
             setMovieView(listMovie!!)
         })
+
     }
 
     private fun setMovieView(listMovie: List<MovieEntity>) {
         if (listMovie.isNotEmpty()) {
-            adapter = MovieGridAdapter(listMovie, this@MovieGridActivity, movieType)
+            adapter = MovieGridAdapter(listMovie, this@MovieGridActivity, this)
             binding.rvMovieList.adapter = adapter
             binding.rvMovieList.adapter?.notifyDataSetChanged()
             binding.cvProgressGrid.visibility = View.GONE
+            binding.srMovieGrid.isRefreshing=false
         } else {
-            Toast.makeText(this@MovieGridActivity, "No data Found", Toast.LENGTH_LONG).show()
+            Toast.makeText(this@MovieGridActivity, getString(R.string.toast_filter_message), Toast.LENGTH_LONG).show()
             binding.cvProgressGrid.visibility = View.GONE
+            binding.srMovieGrid.isRefreshing=false
         }
     }
 
@@ -149,6 +171,14 @@ class MovieGridActivity : AppCompatActivity() {
         binding.etSearch.visibility = View.GONE
 
 
+    }
+
+
+    override fun onResume() {
+        MyFirebaseAnalytics.addScreenView("All $movieType Movie Screen","MainActivity")
+
+
+        super.onResume()
     }
 
 }

@@ -3,6 +3,7 @@ package com.the.firsttask.ui.alarm
 import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
+import android.app.PendingIntent
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
@@ -11,6 +12,8 @@ import android.net.Uri
 import android.os.Build
 import android.util.Log
 import androidx.core.app.NotificationCompat
+import com.the.firsttask.DrawerActivity
+import com.the.firsttask.MainActivity
 import com.the.firsttask.R
 import com.the.firsttask.database.RoomDb
 import com.the.firsttask.utils.ConstantHelper
@@ -27,9 +30,20 @@ class AlarmReceiver : BroadcastReceiver() {
         val description= intent.extras?.getString(ConstantHelper.ALARM_DESCRIPTION)
         val id= intent.extras?.getInt(ConstantHelper.ALARM_ID)
         Log.e("TAG", "onReceive: "+description)
+
+        val intent = Intent(context, DrawerActivity::class.java)
+        intent.putExtra(ConstantHelper.ALARM,"Alarm" )
+        val pendingIntent = PendingIntent.getActivity(
+            context,
+            1,
+            intent,
+            0
+        )
+
         notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         val soundUri = Uri.parse("android.resource://" + context.packageName + "/" + R.raw.notification)
         notification =  NotificationCompat.Builder(context, ConstantHelper.NOTIFICATION_CHANNEL_ID )
+                                .setAutoCancel(true)
                                 .setContentTitle("Alarm Reminder")
                                 .setContentText(description+"" )
                                 .setPriority(NotificationManager.IMPORTANCE_HIGH)
@@ -38,6 +52,7 @@ class AlarmReceiver : BroadcastReceiver() {
                                 .setWhen(System.currentTimeMillis())
                                 .setVibrate(longArrayOf(0, 1000, 500, 1000))
                                 .setSound(soundUri)
+                                .setContentIntent(pendingIntent)
                                 .setChannelId( ConstantHelper.NOTIFICATION_CHANNEL_ID )
                                 .build()
 

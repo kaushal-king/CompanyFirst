@@ -13,7 +13,7 @@
     <string name="menu_gallery">कैलकुलेटर</string>
     <string name="menu_movie">चलचित्र</string>
     <string name="menu_setting">सेटिंग</string>
-    <string name="menu_alarm">Alarm</string>
+    <string name="menu_alarm">अलार्म</string>
 
     <string name="currency_ans_title">परिवर्तित मुद्रा: </string>
     <string name="usd">usd</string>
@@ -41,6 +41,7 @@
     <string name="toast_message">कुछ त्रुटि हुई</string>
     <string name="toast_filter_message">डाटा प्राप्त नहीं हुआ</string>
     <string name="et_error">संख्या के साथ भरें</string>
+    <string name="toast_network_error">संख्या के साथ भरें</string>
 
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
@@ -52,7 +53,7 @@
     <string name="theme_normal">साधारण</string>
     <string name="theme_dark">रात्रि</string>
     <string name="theme_christmas">क्रिसमस</string>
-    <string name="txt_all_answer">USD : 0.0\nPOUND : 0.0\nEURO : 0.0</string>
+
 
     <string name="language_english">अंग्रेज़ी</string>
     <string name="language_hindi">हिन्दी</string>
@@ -63,4 +64,11 @@
     <string name="description">विवरण</string>
     <string name="date">दिनांक</string>
     <string name="time">समय</string>
+    <string name="txt_all_answer">0</string>
+    <string name="time_of_alarm">अलार्म का समय</string>
+    <string name="description_of_alarm">अलार्म का विवरण</string>
+    <string name="save_alarm">अलार्म सहेजें</string>
+    <string name="date_of_alarm">अलार्म की तारीख</string>
+    <string name="amount_in_inr">INR में राशि</string>
+    <string name="moviebanner">movie_banner</string>
 </resources>

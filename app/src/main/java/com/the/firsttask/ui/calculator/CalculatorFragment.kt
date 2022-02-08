@@ -5,7 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.ktx.analytics
+import com.google.firebase.analytics.ktx.logEvent
+import com.google.firebase.ktx.Firebase
 import com.the.firsttask.databinding.FragmentCalculatorBinding
+import com.the.firsttask.utils.MyFirebaseAnalytics
 
 
 class CalculatorFragment : Fragment() {
@@ -28,6 +33,7 @@ class CalculatorFragment : Fragment() {
 
         _binding = FragmentCalculatorBinding.inflate(inflater, container, false)
         val root: View = binding.root
+
         binding.btDot.setOnClickListener {
             setText(".")
         }
@@ -214,4 +220,10 @@ class CalculatorFragment : Fragment() {
         }
     }
 
+
+    override fun onResume() {
+        super.onResume()
+        MyFirebaseAnalytics.addScreenView("CalculatorScreen","MainActivity")
+
+    }
 }

@@ -32,6 +32,7 @@
             android:layout_height="match_parent"
             android:src="@drawable/godfather"
             android:scaleType="centerCrop"
+            android:transitionName="@string/moviebanner"
             />
     </androidx.cardview.widget.CardView>
             <TextView
@@ -52,7 +53,7 @@
                 android:layout_height="20dp"
                 style="?android:attr/ratingBarStyleSmall"
                 android:numStars="5"
-                android:progressTint="?colorAccent"
+                android:progressTint="?colorSecondary"
                 android:progressBackgroundTint="?editTextOutline"
                 android:layout_marginLeft="5dp"
                 />

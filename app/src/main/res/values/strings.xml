@@ -39,6 +39,7 @@
 
     <string name="toast_message">some error occured</string>
     <string name="toast_filter_message">No Data Found</string>
+    <string name="toast_network_error">Network Error</string>
     <string name="et_error">fill with number</string>
 
     <string name="drawer_open">Open navigation drawer</string>
@@ -59,5 +60,11 @@
     <string name="description">Description</string>
     <string name="date">Date</string>
     <string name="time">Time</string>
-    <string name="txt_all_answer">USD : 0.0\nPOUND : 0.0\nEURO : 0.0</string>
+    <string name="txt_all_answer">0</string>
+    <string name="time_of_alarm">Time Of Alarm</string>
+    <string name="description_of_alarm">Description of Alarm</string>
+    <string name="save_alarm">Save Alarm</string>
+    <string name="date_of_alarm">Date Of Alarm</string>
+    <string name="amount_in_inr">Amount in INR</string>
+    <string name="moviebanner">movie_banner</string>
 </resources>

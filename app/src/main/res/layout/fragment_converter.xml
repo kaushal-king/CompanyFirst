@@ -18,20 +18,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-<!--    <TextView-->
-<!--        android:id="@+id/textView2"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginStart="24dp"-->
-<!--        android:layout_marginTop="32dp"-->
-<!--        android:text="@string/select_currency"-->
-<!--        android:textColor="?textColor"-->
-<!--        android:textSize="15sp"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/textView" />-->
-
-    <TextView
+ <TextView
         android:id="@+id/txt_ans"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -43,59 +30,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
 
-    <TextView
-        android:id="@+id/txt_all_ans"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:text="@string/txt_all_answer"
-        android:textColor="?textColor"
-        android:textSize="17sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/txt_ans"
-        app:layout_constraintTop_toBottomOf="@+id/txt_ans" />
 
-
-    <!--    <RadioGroup-->
-<!--        android:id="@+id/radiogroup"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        app:layout_constraintStart_toEndOf="@+id/textView2"-->
-<!--        app:layout_constraintTop_toTopOf="@+id/textView2"-->
-<!--        app:layout_constraintBottom_toBottomOf="@+id/textView2"-->
-<!--        android:orientation="horizontal"-->
-<!--        android:paddingBottom="10dp">-->
-
-<!--        <RadioButton-->
-<!--            android:id="@+id/rd_Usd"-->
-<!--            android:layout_width="fill_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="@string/usd"-->
-<!--            android:layout_marginTop="10dp"-->
-<!--            android:checked="true"-->
-<!--            android:textColor="?textColor"-->
-<!--            />-->
-<!--        <RadioButton-->
-<!--            android:id="@+id/rd_Pound"-->
-<!--            android:layout_width="fill_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="@string/pound"-->
-<!--            android:layout_marginTop="10dp"-->
-<!--            android:checked="false"-->
-<!--            android:textColor="?textColor"-->
-<!--            />-->
-<!--        <RadioButton-->
-<!--            android:id="@+id/rd_Euro"-->
-<!--            android:layout_width="fill_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="@string/euro"-->
-<!--            android:layout_marginTop="10dp"-->
-<!--            android:checked="false"-->
-<!--            android:textColor="?textColor"-->
-<!--            />-->
-<!--    </RadioGroup>-->
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout"
@@ -114,10 +49,147 @@
             android:id="@+id/ed_amount"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="Amount in INR"
+            android:hint="@string/amount_in_inr"
             android:inputType="numberDecimal"
+            android:maxLength="9"
             android:textColor="?textColor" />
     </com.google.android.material.textfield.TextInputLayout>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_usd"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginHorizontal="16dp"
+        android:backgroundTint="?bgColor"
+        app:layout_constraintTop_toBottomOf="@+id/txt_ans" >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="6"
+            android:layout_gravity="center"
+            android:layout_margin="7dp"
+            android:background="?bgColor"
+            >
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_us"
+                android:layout_weight="2"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/usd"
+                android:layout_weight="2.5"
+                android:textColor="?textColor"
+                android:fontFamily="@font/poppins_medium"
+                />
+            <TextView
+                android:id="@+id/tv_usd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:gravity="end"
+                android:textColor="?textColor"
+                android:fontFamily="@font/poppins_medium"
+                android:layout_weight="1.5"
+                />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_euro"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginHorizontal="16dp"
+        android:backgroundTint="?bgColor"
+        app:layout_constraintTop_toBottomOf="@+id/cv_usd" >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="6"
+            android:layout_gravity="center"
+            android:layout_margin="7dp"
+            android:background="?bgColor"
+            >
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_ae"
+                android:layout_weight="2"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/euro"
+                android:layout_weight="2.5"
+                android:textColor="?textColor"
+                android:fontFamily="@font/poppins_medium"
+                />
+            <TextView
+                android:id="@+id/tv_euro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:gravity="end"
+                android:textColor="?textColor"
+                android:fontFamily="@font/poppins_medium"
+                android:layout_weight="1.5"
+                />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_pound"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginHorizontal="16dp"
+        android:backgroundTint="?bgColor"
+        app:layout_constraintTop_toBottomOf="@+id/cv_euro" >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="6"
+            android:layout_gravity="center"
+            android:layout_margin="7dp"
+            android:background="?bgColor"
+            >
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_au"
+                android:layout_weight="2"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/pound"
+                android:layout_weight="2.5"
+                android:textColor="?textColor"
+                android:fontFamily="@font/poppins_medium"
+                />
+            <TextView
+                android:id="@+id/tv_pound"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:gravity="end"
+                android:textColor="?textColor"
+                android:fontFamily="@font/poppins_medium"
+                android:layout_weight="1.5"
+                />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
