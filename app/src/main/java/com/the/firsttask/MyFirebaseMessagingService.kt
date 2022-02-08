@@ -1,6 +1,7 @@
 package com.the.firsttask
 
 
+import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
@@ -40,6 +41,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
             .setContentText(message)
             .setVibrate(longArrayOf(0, 1000, 500, 1000))
             .setContentIntent(pendingIntent)
+            .setDefaults(Notification.DEFAULT_ALL)
             .setStyle( NotificationCompat.BigTextStyle().bigText(message))
 
       //  builder=builder.setContent(getRemoteView(title,message))
