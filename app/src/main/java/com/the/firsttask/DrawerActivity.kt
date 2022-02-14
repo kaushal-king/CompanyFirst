@@ -18,6 +18,7 @@ import com.google.firebase.iid.FirebaseInstanceIdReceiver
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.messaging.FirebaseMessaging
 import com.the.firsttask.databinding.ActivityDrawerBinding
+import com.the.firsttask.sharedpreference.SettingsSharedPreference
 import com.the.firsttask.ui.alarm.AlarmFragment
 import com.the.firsttask.ui.calculator.CalculatorFragment
 import com.the.firsttask.ui.converter.ConverterFragment
@@ -46,13 +47,6 @@ class DrawerActivity : AppCompatActivity() {
         binding = ActivityDrawerBinding.inflate(layoutInflater)
 
         setContentView(binding.root)
-
-
-
-
-
-
-
 
         setSupportActionBar(binding.appBarDrawer.toolbar)
         supportActionBar?.elevation = 0F
@@ -90,6 +84,7 @@ class DrawerActivity : AppCompatActivity() {
                 return@OnCompleteListener
             }
             val token = task.result
+            SettingsSharedPreference.getInstance(this).setFirebaseId(token)
             Log.e("TAG", token.toString())
 
         })

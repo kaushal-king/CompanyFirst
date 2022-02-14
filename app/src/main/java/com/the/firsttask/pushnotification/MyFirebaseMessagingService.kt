@@ -1,4 +1,4 @@
-package com.the.firsttask
+package com.the.firsttask.pushnotification
 
 
 import android.app.Notification
@@ -11,6 +11,8 @@ import android.util.Log
 import androidx.core.app.NotificationCompat
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
+import com.the.firsttask.DrawerActivity
+import com.the.firsttask.R
 import com.the.firsttask.utils.ConstantHelper
 
 
@@ -44,7 +46,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
             .setDefaults(Notification.DEFAULT_ALL)
             .setStyle( NotificationCompat.BigTextStyle().bigText(message))
 
-      //  builder=builder.setContent(getRemoteView(title,message))
+
 
         var notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
 
@@ -62,14 +64,11 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         notificationManager.notify(0,builder.build())
     }
 
-//     fun getRemoteView(title: String, message: String): RemoteViews? {
-//         val remoteViews=RemoteViews("com.the.firsttask",R.layout.layout_notification)
-//         remoteViews.setTextViewText(R.id.tv_title_notification,title)
-//         remoteViews.setTextViewText(R.id.tv_message_notification,message)
-//         remoteViews.setImageViewResource(R.id.iv_icon_notification,R.drawable.smile)
-//
-//         return remoteViews
-//
-//    }
+
+
+    override fun onNewToken(s: String) {
+        super.onNewToken(s)
+//        Log.e("TOKEN new", s)
+    }
 
 }
