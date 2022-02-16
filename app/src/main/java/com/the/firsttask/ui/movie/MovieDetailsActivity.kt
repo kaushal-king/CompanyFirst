@@ -25,6 +25,7 @@ class MovieDetailsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         ThemeUtils.onActivityCreateSetTheme(this)
         LanguageUtils.setLocale(this)
+
         binding = ActivityMoviedetailsBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
