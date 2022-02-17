@@ -28,7 +28,7 @@
 
                 android:fontFamily="@font/poppins_medium"
                 android:text="@string/description"
-                android:textColor="?textColor"
+                android:textColor="?metaTextColor"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -82,7 +82,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="@string/date"
-                android:textColor="?textColor"
+                android:textColor="?metaTextColor"
                 app:layout_constraintStart_toStartOf="@+id/tv_des"
                 app:layout_constraintTop_toBottomOf="@+id/tv_des" />
 
@@ -92,7 +92,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="@string/time"
-                android:textColor="?textColor"
+                android:textColor="?metaTextColor"
                 app:layout_constraintStart_toStartOf="@+id/tv_date"
                 app:layout_constraintTop_toBottomOf="@+id/tv_date" />
         </androidx.constraintlayout.widget.ConstraintLayout>

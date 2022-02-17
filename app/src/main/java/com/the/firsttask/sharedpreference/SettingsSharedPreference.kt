@@ -42,6 +42,27 @@ class SettingsSharedPreference(ctx: Context) {
     }
 
 
+    fun setFirebaseId(id: String) {
+        val sharedPreferences: SharedPreferences = context.getSharedPreferences(
+            ConstantHelper.SHARED_PREFERENCE_ID,
+            Context.MODE_PRIVATE
+        )
+        val editor = sharedPreferences.edit()
+        editor.putString("FirebaseId", id)
+        editor.apply()
+    }
+
+    fun getFirebaseId(): String {
+        val sharedPreferences: SharedPreferences = context.getSharedPreferences(
+            ConstantHelper.SHARED_PREFERENCE_ID,
+            Context.MODE_PRIVATE
+        )
+        val firebaseId = sharedPreferences.getString("FirebaseId", "not define")
+        return firebaseId.toString()
+
+    }
+
+
     fun setLanguage(languageName: String) {
         val sharedPreferences: SharedPreferences = context.getSharedPreferences(
             ConstantHelper.SHARED_PREFERENCE_ID,

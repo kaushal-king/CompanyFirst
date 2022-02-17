@@ -1,10 +1,15 @@
 package com.the.firsttask.ui.setting
 
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.databinding.DataBindingUtil
 import com.the.firsttask.utils.ConstantHelper
 import com.the.firsttask.R
 import com.the.firsttask.databinding.FragmentSettingBinding
@@ -21,12 +26,20 @@ class SettingFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentSettingBinding.inflate(inflater, container, false)
+        _binding = DataBindingUtil.inflate(
+            inflater, R.layout.fragment_setting,container,false)
+       // _binding = FragmentSettingBinding.inflate(inflater, container, false)
         val root: View = binding.root
         loadTheme()
         loadLanguage()
 
-
+        binding.tvFirebaseId.text=SettingsSharedPreference.getInstance(requireContext()).getFirebaseId()
+        binding.ivFirebaseId.setOnClickListener{
+            val clipboard = requireContext().getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+            val clip = ClipData.newPlainText("label", binding.tvFirebaseId.text)
+            clipboard.setPrimaryClip(clip)
+            Toast.makeText(requireContext(),"copy successfully",Toast.LENGTH_LONG).show()
+        }
         binding.llDarkTheme.setOnClickListener {
             SettingsSharedPreference.getInstance(requireContext())
                 .setTheme(ConstantHelper.THEME_NIGHT)

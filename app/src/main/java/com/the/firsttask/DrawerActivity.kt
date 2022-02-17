@@ -1,23 +1,24 @@
 package com.the.firsttask
 
 
+import android.content.Context
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
+import android.view.View
+import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.google.android.gms.tasks.OnCompleteListener
-import com.google.android.gms.tasks.OnSuccessListener
 import com.google.android.material.navigation.NavigationView
-import com.google.firebase.analytics.FirebaseAnalytics
-import com.google.firebase.analytics.ktx.analytics
-import com.google.firebase.iid.FirebaseInstanceIdReceiver
-import com.google.firebase.ktx.Firebase
 import com.google.firebase.messaging.FirebaseMessaging
 import com.the.firsttask.databinding.ActivityDrawerBinding
+
+import com.the.firsttask.sharedpreference.SettingsSharedPreference
 import com.the.firsttask.ui.alarm.AlarmFragment
 import com.the.firsttask.ui.calculator.CalculatorFragment
 import com.the.firsttask.ui.converter.ConverterFragment
@@ -46,13 +47,6 @@ class DrawerActivity : AppCompatActivity() {
         binding = ActivityDrawerBinding.inflate(layoutInflater)
 
         setContentView(binding.root)
-
-
-
-
-
-
-
 
         setSupportActionBar(binding.appBarDrawer.toolbar)
         supportActionBar?.elevation = 0F
@@ -90,6 +84,7 @@ class DrawerActivity : AppCompatActivity() {
                 return@OnCompleteListener
             }
             val token = task.result
+            SettingsSharedPreference.getInstance(this).setFirebaseId(token)
             Log.e("TAG", token.toString())
 
         })
@@ -100,14 +95,27 @@ class DrawerActivity : AppCompatActivity() {
 
     private fun setupDrawerToggle(): ActionBarDrawerToggle {
 
-        return ActionBarDrawerToggle(
+        return object : ActionBarDrawerToggle(
             this,
             binding.drawerLayout,
             binding.appBarDrawer.toolbar,
             R.string.drawer_open,
             R.string.drawer_close
-        )
+        ){
+            override fun onDrawerOpened(drawerView: View) {
+                super.onDrawerOpened(drawerView)
+                val inputMethodManager: InputMethodManager =
+                    getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                inputMethodManager.hideSoftInputFromWindow(currentFocus!!.windowToken, 0)
+
+            }
+
+        }
+
     }
+
+
+
 
     private fun setupDrawerContent(navigationView: NavigationView) {
         navigationView.setNavigationItemSelectedListener { menuItem ->
@@ -120,10 +128,16 @@ class DrawerActivity : AppCompatActivity() {
     private fun selectDrawerItem(menuItem: MenuItem) {
 
         var fragment: Fragment? = null
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_USER
         val fragmentClass: Class<*>
         when (menuItem.itemId) {
             R.id.nav_converter -> fragmentClass = ConverterFragment::class.java
-            R.id.nav_calculator -> fragmentClass = CalculatorFragment::class.java
+            R.id.nav_calculator ->
+            {
+                requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+                CalculatorFragment::class.java
+                fragmentClass = CalculatorFragment::class.java
+            }
             R.id.nav_movie -> fragmentClass = MovieListFragment::class.java
             R.id.nav_setting -> fragmentClass = SettingFragment::class.java
             R.id.nav_alarm -> fragmentClass = AlarmFragment::class.java

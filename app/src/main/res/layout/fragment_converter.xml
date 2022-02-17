@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable name="data" type="com.the.firsttask.ui.converter.ConverterViewModel"/>
+    </data>
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -52,6 +56,8 @@
             android:hint="@string/amount_in_inr"
             android:inputType="numberDecimal"
             android:maxLength="9"
+            android:onTextChanged="@{(text, start, before, count) -> data.calculateAmount(text)}"
+            android:text="@{data.amountType}"
             android:textColor="?textColor" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -92,7 +98,7 @@
                 android:id="@+id/tv_usd"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="0"
+                android:text="@{data.usd}"
                 android:gravity="end"
                 android:textColor="?textColor"
                 android:fontFamily="@font/poppins_medium"
@@ -137,7 +143,7 @@
                 android:id="@+id/tv_euro"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="0"
+                android:text="@{data.euro}"
                 android:gravity="end"
                 android:textColor="?textColor"
                 android:fontFamily="@font/poppins_medium"
@@ -182,7 +188,7 @@
                 android:id="@+id/tv_pound"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="0"
+                android:text="@{data.pound}"
                 android:gravity="end"
                 android:textColor="?textColor"
                 android:fontFamily="@font/poppins_medium"
@@ -193,3 +199,4 @@
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

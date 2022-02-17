@@ -25,14 +25,7 @@ class MainActivity : AppCompatActivity() {
         editText = findViewById(R.id.ed_amount)
         answer = findViewById(R.id.txt_ans)
         radioGroup.setOnCheckedChangeListener { group, checkedid ->
-//                val radio: RadioButton = findViewById(checkedid)
-//                Toast.makeText(
-//                    applicationContext, " On checked change :" +
-//                            " ${radio.text}",
-//                    Toast.LENGTH_SHORT
-//                ).show()
             calculateAmount(amountType)
-
         }
 
         editText.addTextChangedListener(object : TextWatcher {
@@ -41,7 +34,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-//                Log.e("text change", "onTextChanged: $p0")
+
                 amountType = p0.toString()
                 calculateAmount(amountType)
 
