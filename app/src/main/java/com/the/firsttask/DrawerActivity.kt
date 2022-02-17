@@ -128,14 +128,14 @@ class DrawerActivity : AppCompatActivity() {
     private fun selectDrawerItem(menuItem: MenuItem) {
 
         var fragment: Fragment? = null
-        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_USER
+//        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_USER
         val fragmentClass: Class<*>
         when (menuItem.itemId) {
             R.id.nav_converter -> fragmentClass = ConverterFragment::class.java
             R.id.nav_calculator ->
             {
-                requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
-                CalculatorFragment::class.java
+//                requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+//                CalculatorFragment::class.java
                 fragmentClass = CalculatorFragment::class.java
             }
             R.id.nav_movie -> fragmentClass = MovieListFragment::class.java

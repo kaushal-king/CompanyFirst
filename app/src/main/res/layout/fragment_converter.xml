@@ -3,6 +3,9 @@
     <data>
         <variable name="data" type="com.the.firsttask.ui.converter.ConverterViewModel"/>
     </data>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -199,4 +202,5 @@
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 </layout>
