@@ -12,11 +12,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
-import com.google.firebase.analytics.FirebaseAnalytics
-import com.google.firebase.analytics.ktx.analytics
-import com.google.firebase.analytics.ktx.logEvent
-import com.google.firebase.ktx.Firebase
 import com.the.firsttask.R
+import com.the.firsttask.adapter.MovieGridAdapter.FragmentCommunication
 import com.the.firsttask.adapter.MovieGridAdapter
 import com.the.firsttask.database.MovieEntity
 import com.the.firsttask.databinding.ActivityMovieGridBinding
@@ -25,6 +22,7 @@ import com.the.firsttask.utils.LanguageUtils
 import com.the.firsttask.utils.MyFirebaseAnalytics
 import com.the.firsttask.utils.ThemeUtils
 
+
 class MovieGridActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMovieGridBinding
     private var adapter: MovieGridAdapter? = null
@@ -32,7 +30,7 @@ class MovieGridActivity : AppCompatActivity() {
     private lateinit var movieType: String
     private lateinit var view: ConstraintLayout
     private lateinit var viewModel: MovieListViewModel
-
+    lateinit var communication: FragmentCommunication
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,6 +44,7 @@ class MovieGridActivity : AppCompatActivity() {
 
 
         viewModel = ViewModelProvider(this@MovieGridActivity).get(MovieListViewModel::class.java)
+
 
         movieType = intent.getStringExtra(ConstantHelper.BUNDLE_MOVIE_TYPE).toString()
         if (movieType == ConstantHelper.MOVIE_TYPE_TOP) {
@@ -106,6 +105,13 @@ class MovieGridActivity : AppCompatActivity() {
         }
 
 
+       communication = object : FragmentCommunication {
+            override fun respond(count: Int) {
+                binding.tvCount.text =  "  $count Total movie"
+            }
+        }
+
+
     }
 
 
@@ -125,19 +131,22 @@ class MovieGridActivity : AppCompatActivity() {
 
     }
 
+
+
     private fun loadMovie() {
         binding.cvProgressGrid.visibility = View.VISIBLE
         viewModel.getAllMovie()
-        viewModel.getAllMovieObservers().observe(this@MovieGridActivity, { movi ->
+        viewModel.getAllMovieObservers().observe(this@MovieGridActivity) { movi ->
             listMovie = movi.filter { movieEntity -> movieEntity.type == movieType }
             setMovieView(listMovie!!)
-        })
+            binding.tvCount.text = listMovie?.size.toString() + "  " + "Total movie"
+        }
 
     }
 
     private fun setMovieView(listMovie: List<MovieEntity>) {
         if (listMovie.isNotEmpty()) {
-            adapter = MovieGridAdapter(listMovie, this@MovieGridActivity, this)
+            adapter = MovieGridAdapter(listMovie.toMutableList(), this@MovieGridActivity, this,communication)
             binding.rvMovieList.adapter = adapter
             binding.rvMovieList.adapter?.notifyDataSetChanged()
             binding.cvProgressGrid.visibility = View.GONE

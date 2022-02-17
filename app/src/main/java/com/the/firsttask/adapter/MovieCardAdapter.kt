@@ -16,16 +16,17 @@ import androidx.core.app.ActivityOptionsCompat
 import androidx.core.view.ViewCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.the.firsttask.utils.ConstantHelper
-import com.the.firsttask.database.MovieEntity
 import com.the.firsttask.R
+import com.the.firsttask.database.MovieEntity
 import com.the.firsttask.ui.movie.MovieDetailsActivity
+import com.the.firsttask.utils.ConstantHelper
 
 class MovieCardAdapter(
     private val mList: List<MovieEntity>,
     var mCtx: Context,
     var movieType: String,
     var activity:Activity,
+
 ) : RecyclerView.Adapter<MovieCardAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -67,6 +68,7 @@ class MovieCardAdapter(
         })
 
 
+
         return viewHolder
 
     }
@@ -79,6 +81,7 @@ class MovieCardAdapter(
             .into(holder.imageView)
         holder.movieName.text = item.title
         holder.rating.rating = (item.voteAverage.div(2)).toFloat()
+        holder.deleteMovie.visibility=View.GONE
 
 
     }
@@ -94,6 +97,8 @@ class MovieCardAdapter(
         var movieName: TextView = itemView.findViewById(R.id.tv_moviename)
         var movieCard: CardView = itemView.findViewById(R.id.cv_movie)
         var movie: LinearLayout = itemView.findViewById(R.id.ll_movie)
+        var deleteMovie: ImageView = itemView.findViewById(R.id.iv_delete_movie)
     }
+
 
 }

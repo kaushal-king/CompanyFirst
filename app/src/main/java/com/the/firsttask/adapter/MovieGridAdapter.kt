@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,9 +20,10 @@ import com.the.firsttask.ui.movie.MovieDetailsActivity
 import com.the.firsttask.R
 
 class MovieGridAdapter(
-     var mList: List<MovieEntity>,
+     var mList: MutableList<MovieEntity>,
     var mCtx: Context,
-    var activity: Activity
+    var activity: Activity,
+     var mComminication:FragmentCommunication
 ) : RecyclerView.Adapter<MovieGridAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -50,6 +52,13 @@ class MovieGridAdapter(
                 mCtx.startActivity(intent,options.toBundle())
             }
         })
+        viewHolder.deleteMovie.setOnClickListener{
+
+            mList.removeAt(viewHolder.adapterPosition)
+            notifyDataSetChanged()
+            mComminication.respond(mList.size)
+            Log.e("TAG", "delete: "+mList.size )
+        }
 
         viewHolder.imageView.setOnClickListener(object : View.OnClickListener {
             override fun onClick(view: View?) {
@@ -89,7 +98,7 @@ class MovieGridAdapter(
     }
 
     fun filterList(filterllist: List<MovieEntity?>) {
-        mList = filterllist as List<MovieEntity>
+        mList = (filterllist as List<MovieEntity>).toMutableList()
         notifyDataSetChanged()
     }
 
@@ -102,7 +111,11 @@ class MovieGridAdapter(
         var movieName: TextView = itemView.findViewById(R.id.tv_moviename)
         var movieCard: CardView = itemView.findViewById(R.id.cv_movie)
         var movie: LinearLayout = itemView.findViewById(R.id.ll_movie)
+        var deleteMovie: ImageView = itemView.findViewById(R.id.iv_delete_movie)
         var mainMovieLayout: LinearLayout = itemView.findViewById(R.id.movie_cardlayout)
+    }
+    interface FragmentCommunication {
+        fun respond(count: Int)
     }
 
 
