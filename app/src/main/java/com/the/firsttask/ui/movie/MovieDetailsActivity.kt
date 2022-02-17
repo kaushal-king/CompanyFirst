@@ -2,6 +2,7 @@ package com.the.firsttask.ui.movie
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.ktx.analytics
@@ -25,10 +26,11 @@ class MovieDetailsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         ThemeUtils.onActivityCreateSetTheme(this)
         LanguageUtils.setLocale(this)
-
-        binding = ActivityMoviedetailsBinding.inflate(layoutInflater)
-        val view = binding.root
-        setContentView(view)
+        binding = DataBindingUtil.setContentView(
+            this, R.layout.activity_moviedetails)
+//        binding = ActivityMoviedetailsBinding.inflate(layoutInflater)
+//        val view = binding.root
+//        setContentView(view)
 
         val model: MovieEntity
         val bundle = intent.getBundleExtra(ConstantHelper.BUNDLE_DETAILS_BUNDLE)

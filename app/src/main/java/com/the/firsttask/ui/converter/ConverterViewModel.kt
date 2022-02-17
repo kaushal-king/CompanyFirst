@@ -34,34 +34,21 @@ class ConverterViewModel : ViewModel() {
         var inr = amount.toString()
         Log.e("TAG", "calculateAmount: $inr")
         if (inr.isEmpty()) {
-
-
             setUsd("0")
             setPound("0")
             setEuro("0")
-
-
         } else {
             val enternumber: Double = inr.toDouble()
             var result: Double
-
-
             //USD
             result = enternumber * 0.0133535335
-
             setUsd("%.2f".format(result))
-
-
             //POUND
             result = enternumber * 0.0098
             setEuro("%.2f".format(result))
-
-
             //EURO
             result = enternumber * 0.012
             setPound("%.2f".format(result))
-
-
         }
     }
 

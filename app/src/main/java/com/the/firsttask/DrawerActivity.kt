@@ -17,6 +17,7 @@ import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.messaging.FirebaseMessaging
 import com.the.firsttask.databinding.ActivityDrawerBinding
+
 import com.the.firsttask.sharedpreference.SettingsSharedPreference
 import com.the.firsttask.ui.alarm.AlarmFragment
 import com.the.firsttask.ui.calculator.CalculatorFragment

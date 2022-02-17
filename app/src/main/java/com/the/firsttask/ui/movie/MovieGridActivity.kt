@@ -10,6 +10,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.ktx.analytics
@@ -37,10 +38,11 @@ class MovieGridActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         ThemeUtils.onActivityCreateSetTheme(this)
         LanguageUtils.setLocale(this)
-        binding = ActivityMovieGridBinding.inflate(layoutInflater)
-
-        view = binding.root
-        setContentView(view)
+        binding = DataBindingUtil.setContentView(
+            this, R.layout.activity_movie_grid)
+//        binding = ActivityMovieGridBinding.inflate(layoutInflater)
+//        view = binding.root
+//        setContentView(view)
 
 
         viewModel = ViewModelProvider(this@MovieGridActivity).get(MovieListViewModel::class.java)

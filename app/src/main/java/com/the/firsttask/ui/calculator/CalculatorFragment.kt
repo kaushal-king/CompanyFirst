@@ -4,11 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.ktx.analytics
 import com.google.firebase.analytics.ktx.logEvent
 import com.google.firebase.ktx.Firebase
+import com.the.firsttask.R
 import com.the.firsttask.databinding.FragmentCalculatorBinding
 import com.the.firsttask.utils.MyFirebaseAnalytics
 
@@ -17,6 +19,7 @@ class CalculatorFragment : Fragment() {
 
 
     private var _binding: FragmentCalculatorBinding? = null
+
 
     private val binding get() = _binding!!
     private var flag: Boolean = false
@@ -30,8 +33,8 @@ class CalculatorFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-
-        _binding = FragmentCalculatorBinding.inflate(inflater, container, false)
+        _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_calculator, container, false)
+        //_binding = FragmentCalculatorBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         binding.btDot.setOnClickListener {

@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.databinding.DataBindingUtil
 import com.the.firsttask.utils.ConstantHelper
 import com.the.firsttask.R
 import com.the.firsttask.databinding.FragmentSettingBinding
@@ -25,7 +26,9 @@ class SettingFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentSettingBinding.inflate(inflater, container, false)
+        _binding = DataBindingUtil.inflate(
+            inflater, R.layout.fragment_setting,container,false)
+       // _binding = FragmentSettingBinding.inflate(inflater, container, false)
         val root: View = binding.root
         loadTheme()
         loadLanguage()

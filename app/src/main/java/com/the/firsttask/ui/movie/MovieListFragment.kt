@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.google.firebase.analytics.FirebaseAnalytics
@@ -20,6 +21,7 @@ import com.the.firsttask.api.Api
 import com.the.firsttask.api.ApiClient
 import com.the.firsttask.database.MovieEntity
 import com.the.firsttask.databinding.FragmentMovieListBinding
+
 import com.the.firsttask.utils.ConstantHelper
 import com.the.firsttask.utils.MyFirebaseAnalytics
 import com.the.firsttask.utils.NetworkUtils
@@ -44,7 +46,9 @@ class MovieListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentMovieListBinding.inflate(inflater, container, false)
+        _binding = DataBindingUtil.inflate(
+            inflater, R.layout.fragment_movie_list,container,false)
+      //  _binding = FragmentMovieListBinding.inflate(inflater, container, false)
         val root: View = binding.root
         viewModel = ViewModelProvider(requireActivity()).get(MovieListViewModel::class.java)
         firebaseAnalytics=Firebase.analytics
