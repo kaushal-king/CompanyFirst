@@ -14,6 +14,7 @@
     <string name="menu_movie">चलचित्र</string>
     <string name="menu_setting">सेटिंग</string>
     <string name="menu_alarm">अलार्म</string>
+    <string name="menu_map">नक्शा</string>
 
     <string name="currency_ans_title">परिवर्तित मुद्रा: </string>
     <string name="usd">usd</string>
@@ -72,4 +73,6 @@
     <string name="amount_in_inr">INR में राशि</string>
     <string name="moviebanner">movie_banner</string>
     <string name="firebaseid">Firebase Id</string>
+
+    <string name="MAPS_API_KEY">AIzaSyCgD7l72L8V7aOLRmFL61yTcOVV1LRB7t8</string>
 </resources>

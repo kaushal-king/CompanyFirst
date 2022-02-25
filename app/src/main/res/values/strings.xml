@@ -13,6 +13,7 @@
     <string name="menu_movie">Movie</string>
     <string name="menu_setting">Setting</string>
     <string name="menu_alarm">Alarm</string>
+    <string name="menu_map">Map</string>
 
     <string name="currency_ans_title">Converted Currency : </string>
     <string name="usd">usd</string>
@@ -68,4 +69,7 @@
     <string name="amount_in_inr">Amount in INR</string>
     <string name="moviebanner">movie_banner</string>
     <string name="firebaseid">Firebase Id</string>
+
+    <string name="MAPS_API_KEY">AIzaSyCgD7l72L8V7aOLRmFL61yTcOVV1LRB7t8</string>
+
 </resources>

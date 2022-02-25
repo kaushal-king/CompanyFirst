@@ -13,6 +13,7 @@ class SettingsSharedPreference(ctx: Context) {
         private var INSTANCE: SettingsSharedPreference? = null
 
         fun getInstance(context: Context): SettingsSharedPreference {
+
             return INSTANCE ?: synchronized(this) {
                 var instance = SettingsSharedPreference(context)
                 INSTANCE = instance

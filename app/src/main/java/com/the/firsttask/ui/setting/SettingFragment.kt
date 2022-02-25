@@ -75,7 +75,7 @@ class SettingFragment : Fragment() {
 
 
     private fun loadTheme(){
-        var currentTheme= SettingsSharedPreference.getInstance(requireContext()).getTheme()
+        val currentTheme= SettingsSharedPreference.getInstance(requireContext()).getTheme()
 
         when(currentTheme){
             ConstantHelper.THEME_NORMAL->normalTheme()

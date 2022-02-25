@@ -23,4 +23,7 @@ object ConstantHelper {
     const val PUSHNOTIFICATION_CHANNEL_Name="the.firsttask.firebase"
     const val PUSHNOTIFICATION_CHANNEL_ID="push_notification"
 
+    const val MAPS_API_KEY="AIzaSyCgD7l72L8V7aOLRmFL61yTcOVV1LRB7t8"
+    const val MY_PERMISSION_FINE_LOCATION = 101
+    const val  AUTOCOMPLETE_REQUEST_CODE =102
 }

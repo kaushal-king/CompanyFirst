@@ -1,6 +1,7 @@
 package com.the.firsttask.ui.movie
 
 import android.app.Activity
+import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -30,7 +31,7 @@ class MovieGridActivity : AppCompatActivity() {
     private lateinit var movieType: String
     private lateinit var view: ConstraintLayout
     private lateinit var viewModel: MovieListViewModel
-    lateinit var communication: FragmentCommunication
+    lateinit var fragmentCommunication: FragmentCommunication
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,6 +65,9 @@ class MovieGridActivity : AppCompatActivity() {
                 onBackPressed()
             } else {
                 binding.etSearch.setText("")
+                val inputMethodManager: InputMethodManager =
+                    getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                inputMethodManager.hideSoftInputFromWindow(currentFocus!!.windowToken, 0)
                 searchToggle()
             }
         }
@@ -105,7 +109,7 @@ class MovieGridActivity : AppCompatActivity() {
         }
 
 
-       communication = object : FragmentCommunication {
+       fragmentCommunication = object : FragmentCommunication {
             override fun respond(count: Int) {
                 binding.tvCount.text =  "  $count Total movie"
             }
@@ -146,7 +150,7 @@ class MovieGridActivity : AppCompatActivity() {
 
     private fun setMovieView(listMovie: List<MovieEntity>) {
         if (listMovie.isNotEmpty()) {
-            adapter = MovieGridAdapter(listMovie.toMutableList(), this@MovieGridActivity, this,communication)
+            adapter = MovieGridAdapter(listMovie.toMutableList(), this@MovieGridActivity, this,fragmentCommunication)
             binding.rvMovieList.adapter = adapter
             binding.rvMovieList.adapter?.notifyDataSetChanged()
             binding.cvProgressGrid.visibility = View.GONE
@@ -173,9 +177,7 @@ class MovieGridActivity : AppCompatActivity() {
 
     private fun searchToggle() {
         binding.etSearch.clearFocus()
-        val inputMethodManager =
-            getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
-        inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
+
         searchMovie(binding.etSearch.text.toString())
         binding.tvListTitle.visibility = View.VISIBLE
         binding.ibSearch.visibility = View.VISIBLE

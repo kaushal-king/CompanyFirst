@@ -23,7 +23,7 @@ class MovieGridAdapter(
      var mList: MutableList<MovieEntity>,
     var mCtx: Context,
     var activity: Activity,
-     var mComminication:FragmentCommunication
+     var fragmentCommunication:FragmentCommunication
 ) : RecyclerView.Adapter<MovieGridAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -39,40 +39,38 @@ class MovieGridAdapter(
         layoutParamsMain.width = LinearLayout.LayoutParams.MATCH_PARENT
 
 
-        viewHolder.movie.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(view: View?) {
-                val intent = Intent(mCtx, MovieDetailsActivity::class.java)
-                var options: ActivityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(activity,viewHolder.imageView,
-                    ViewCompat.getTransitionName(viewHolder.imageView)!!
-                )
-                var model = mList.get(viewHolder.adapterPosition)
-                val bundle = Bundle()
-                bundle.putSerializable(ConstantHelper.BUNDLE_DETAILS_MOVIE, model)
-                intent.putExtra(ConstantHelper.BUNDLE_DETAILS_BUNDLE, bundle)
-                mCtx.startActivity(intent,options.toBundle())
-            }
-        })
+        viewHolder.movie.setOnClickListener {
+            val intent = Intent(mCtx, MovieDetailsActivity::class.java)
+            val options: ActivityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(
+                activity, viewHolder.imageView,
+                ViewCompat.getTransitionName(viewHolder.imageView)!!
+            )
+            val model = mList[viewHolder.adapterPosition]
+            val bundle = Bundle()
+            bundle.putSerializable(ConstantHelper.BUNDLE_DETAILS_MOVIE, model)
+            intent.putExtra(ConstantHelper.BUNDLE_DETAILS_BUNDLE, bundle)
+            mCtx.startActivity(intent, options.toBundle())
+        }
         viewHolder.deleteMovie.setOnClickListener{
 
             mList.removeAt(viewHolder.adapterPosition)
             notifyDataSetChanged()
-            mComminication.respond(mList.size)
+            fragmentCommunication.respond(mList.size)
             Log.e("TAG", "delete: "+mList.size )
         }
 
-        viewHolder.imageView.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(view: View?) {
-                val intent = Intent(mCtx, MovieDetailsActivity::class.java)
-                var options: ActivityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(activity,viewHolder.imageView,
-                    ViewCompat.getTransitionName(viewHolder.imageView)!!
-                )
-                var model = mList.get(viewHolder.adapterPosition)
-                val bundle = Bundle()
-                bundle.putSerializable(ConstantHelper.BUNDLE_DETAILS_MOVIE, model)
-                intent.putExtra(ConstantHelper.BUNDLE_DETAILS_BUNDLE, bundle)
-                mCtx.startActivity(intent,options.toBundle())
-            }
-        })
+        viewHolder.imageView.setOnClickListener {
+            val intent = Intent(mCtx, MovieDetailsActivity::class.java)
+            val options: ActivityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(
+                activity, viewHolder.imageView,
+                ViewCompat.getTransitionName(viewHolder.imageView)!!
+            )
+            val model = mList[viewHolder.adapterPosition]
+            val bundle = Bundle()
+            bundle.putSerializable(ConstantHelper.BUNDLE_DETAILS_MOVIE, model)
+            intent.putExtra(ConstantHelper.BUNDLE_DETAILS_BUNDLE, bundle)
+            mCtx.startActivity(intent, options.toBundle())
+        }
 
 
         return viewHolder
@@ -114,6 +112,7 @@ class MovieGridAdapter(
         var deleteMovie: ImageView = itemView.findViewById(R.id.iv_delete_movie)
         var mainMovieLayout: LinearLayout = itemView.findViewById(R.id.movie_cardlayout)
     }
+
     interface FragmentCommunication {
         fun respond(count: Int)
     }

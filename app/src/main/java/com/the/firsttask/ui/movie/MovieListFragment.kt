@@ -128,6 +128,7 @@ class MovieListFragment : Fragment() {
     }
 
     private fun loadPopular() {
+        binding.cvProgressPopular.visibility = View.VISIBLE
         val client = ApiClient()
         val api = client.getClient()?.create(Api::class.java)
         val call = api?.popularList(getString(R.string.apikey))
@@ -143,16 +144,17 @@ class MovieListFragment : Fragment() {
                         movieEntity.type = ConstantHelper.MOVIE_TYPE_POPULAR
                     }
 
+
                     viewModel.insertMoviesInfo(listMovie)
                     binding.srMovieList.isRefreshing=false
-
+                    binding.cvProgressPopular.visibility = View.GONE
 
                 } else {
                     Toast.makeText(activity,
                         getString(R.string.toast_message), Toast.LENGTH_SHORT)
                         .show()
                     binding.srMovieList.isRefreshing=false
-
+                    binding.cvProgressPopular.visibility = View.GONE
                 }
             }
 
@@ -161,6 +163,7 @@ class MovieListFragment : Fragment() {
                 Toast.makeText(activity, getString(R.string.toast_network_error), Toast.LENGTH_SHORT)
                     .show()
                 binding.srMovieList.isRefreshing=false
+                binding.cvProgressPopular.visibility = View.GONE
             }
         })
 
@@ -168,7 +171,7 @@ class MovieListFragment : Fragment() {
 
     private fun loadTopRated() {
 
-
+        binding.cvProgressTop.visibility = View.VISIBLE
         val client = ApiClient()
         val api = client.getClient()?.create(Api::class.java)
         val call = api?.topRatedlist(getString(R.string.apikey))
@@ -184,12 +187,12 @@ class MovieListFragment : Fragment() {
                     }
                     viewModel.insertMoviesInfo(listMovie)
                     binding.srMovieList.isRefreshing=false
-
+                    binding.cvProgressTop.visibility = View.GONE
                 } else {
                     Toast.makeText(activity, getString(R.string.toast_message), Toast.LENGTH_SHORT)
                         .show()
                     binding.srMovieList.isRefreshing=false
-
+                    binding.cvProgressTop.visibility = View.GONE
                 }
             }
 
@@ -198,6 +201,7 @@ class MovieListFragment : Fragment() {
                 Toast.makeText(activity, getString(R.string.toast_network_error), Toast.LENGTH_SHORT)
                     .show()
                 binding.srMovieList.isRefreshing=false
+                binding.cvProgressTop.visibility = View.GONE
             }
         })
 
@@ -246,7 +250,7 @@ class MovieListFragment : Fragment() {
     }
 
     fun logSeeAllFirebase(movieType:String){
-        var bundle=Bundle()
+        val bundle=Bundle()
         if(movieType=="TopMovie"){
             bundle.putInt("id",R.id.tv_top_all)
         }

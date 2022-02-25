@@ -39,33 +39,31 @@ class MovieCardAdapter(
             layoutParams.width = 220
         }
 
-        viewHolder.movie.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(view: View?) {
-                val intent = Intent(mCtx, MovieDetailsActivity::class.java)
-                var options: ActivityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(activity,viewHolder.imageView,
-                    ViewCompat.getTransitionName(viewHolder.imageView)!!
-                )
-                var model = mList.get(viewHolder.adapterPosition)
-                val bundle = Bundle()
-                bundle.putSerializable(ConstantHelper.BUNDLE_DETAILS_MOVIE, model)
-                intent.putExtra(ConstantHelper.BUNDLE_DETAILS_BUNDLE, bundle)
-                mCtx.startActivity(intent,options.toBundle())
-            }
-        })
+        viewHolder.movie.setOnClickListener {
+            val intent = Intent(mCtx, MovieDetailsActivity::class.java)
+            val options: ActivityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(
+                activity, viewHolder.imageView,
+                ViewCompat.getTransitionName(viewHolder.imageView)!!
+            )
+            val model = mList.get(viewHolder.adapterPosition)
+            val bundle = Bundle()
+            bundle.putSerializable(ConstantHelper.BUNDLE_DETAILS_MOVIE, model)
+            intent.putExtra(ConstantHelper.BUNDLE_DETAILS_BUNDLE, bundle)
+            mCtx.startActivity(intent, options.toBundle())
+        }
 
-        viewHolder.imageView.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(view: View?) {
-                val intent = Intent(mCtx, MovieDetailsActivity::class.java)
-                var options: ActivityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(activity,viewHolder.imageView,
-                    ViewCompat.getTransitionName(viewHolder.imageView)!!
-                )
-                var model = mList.get(viewHolder.adapterPosition)
-                val bundle = Bundle()
-                bundle.putSerializable(ConstantHelper.BUNDLE_DETAILS_MOVIE, model)
-                intent.putExtra(ConstantHelper.BUNDLE_DETAILS_BUNDLE, bundle)
-                mCtx.startActivity(intent,options.toBundle())
-            }
-        })
+        viewHolder.imageView.setOnClickListener {
+            val intent = Intent(mCtx, MovieDetailsActivity::class.java)
+            val options: ActivityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(
+                activity, viewHolder.imageView,
+                ViewCompat.getTransitionName(viewHolder.imageView)!!
+            )
+            val model = mList.get(viewHolder.adapterPosition)
+            val bundle = Bundle()
+            bundle.putSerializable(ConstantHelper.BUNDLE_DETAILS_MOVIE, model)
+            intent.putExtra(ConstantHelper.BUNDLE_DETAILS_BUNDLE, bundle)
+            mCtx.startActivity(intent, options.toBundle())
+        }
 
 
 

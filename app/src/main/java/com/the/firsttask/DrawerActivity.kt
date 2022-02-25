@@ -22,6 +22,7 @@ import com.the.firsttask.sharedpreference.SettingsSharedPreference
 import com.the.firsttask.ui.alarm.AlarmFragment
 import com.the.firsttask.ui.calculator.CalculatorFragment
 import com.the.firsttask.ui.converter.ConverterFragment
+import com.the.firsttask.ui.map.MapFragment
 import com.the.firsttask.ui.movie.MovieListFragment
 import com.the.firsttask.ui.setting.SettingFragment
 import com.the.firsttask.utils.ConstantHelper
@@ -141,6 +142,7 @@ class DrawerActivity : AppCompatActivity() {
             R.id.nav_movie -> fragmentClass = MovieListFragment::class.java
             R.id.nav_setting -> fragmentClass = SettingFragment::class.java
             R.id.nav_alarm -> fragmentClass = AlarmFragment::class.java
+            R.id.nav_map -> fragmentClass = MapFragment::class.java
             else -> fragmentClass = ConverterFragment::class.java
         }
 
