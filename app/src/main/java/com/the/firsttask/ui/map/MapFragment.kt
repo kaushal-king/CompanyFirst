@@ -55,7 +55,9 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListe
         searchPlaceLauncher = registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()
         ) { result: ActivityResult ->
-           // Log.e("TAG", result.resultCode.toString())
+            Log.e("TAG", result.resultCode.toString())
+
+
             val status = Autocomplete.getStatusFromIntent(result.data)
             Log.i("TAG", status.statusMessage.toString()+"place message")
 
@@ -70,11 +72,6 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListe
                     val status = Autocomplete.getStatusFromIntent(result.data)
                     Log.i("TAG", status.statusMessage.toString())
                 }
-            } else {
-
-
-
-
             }
 
 
@@ -107,7 +104,8 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListe
         val root: View = _binding.root
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireContext())
         if (!Places.isInitialized()) {
-            Places.initialize(requireContext(), "AIzaSyCgD7l72L8V7aOLRmFL61yTcOVV1LRB7t8")
+            Places.initialize(context, "AIzaSyCgD7l72L8V7aOLRmFL61yTcOVV1LRB7t8")
+            Log.e("TAG", "Places Initialized", )
         }
 
         val mapFragment =

@@ -15,6 +15,8 @@
         <entry key="..\:/company/app/src/main/res/drawable/ripple.xml" value="0.13854166666666667" />
         <entry key="..\:/company/app/src/main/res/drawable/side_nav_bar.xml" value="0.13177083333333334" />
         <entry key="..\:/company/app/src/main/res/drawable/smile.xml" value="0.13177083333333334" />
+        <entry key="..\:/company/app/src/main/res/drawable/splash_background.xml" value="0.1645" />
+        <entry key="..\:/company/app/src/main/res/drawable/splash_bg_color.xml" value="0.1645" />
         <entry key="..\:/company/app/src/main/res/layout-land/fragment_calculator.xml" value="0.2072072072072072" />
         <entry key="..\:/company/app/src/main/res/layout/activity_business_card_scan.xml" value="0.176" />
         <entry key="..\:/company/app/src/main/res/layout/activity_crop_card.xml" value="0.152" />
@@ -25,6 +27,7 @@
         <entry key="..\:/company/app/src/main/res/layout/activity_movieedetails.xml" value="0.2" />
         <entry key="..\:/company/app/src/main/res/layout/activity_movieetails.xml" value="0.2" />
         <entry key="..\:/company/app/src/main/res/layout/activity_movielist.xml" value="0.176" />
+        <entry key="..\:/company/app/src/main/res/layout/activity_splash.xml" value="0.16875" />
         <entry key="..\:/company/app/src/main/res/layout/app_bar_drawer.xml" value="0.1" />
         <entry key="..\:/company/app/src/main/res/layout/content_drawer.xml" value="0.1" />
         <entry key="..\:/company/app/src/main/res/layout/fragment_alarm.xml" value="0.152" />
