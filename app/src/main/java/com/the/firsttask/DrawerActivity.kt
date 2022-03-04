@@ -11,7 +11,7 @@ import android.view.ViewTreeObserver
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -50,8 +50,6 @@ class DrawerActivity : AppCompatActivity() {
         binding = ActivityDrawerBinding.inflate(layoutInflater)
 
         setContentView(binding.root)
-
-
 
         setSupportActionBar(binding.appBarDrawer.toolbar)
         supportActionBar?.elevation = 0F
@@ -109,9 +107,14 @@ class DrawerActivity : AppCompatActivity() {
         ){
             override fun onDrawerOpened(drawerView: View) {
                 super.onDrawerOpened(drawerView)
-                val inputMethodManager: InputMethodManager =
-                    getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-                inputMethodManager.hideSoftInputFromWindow(currentFocus!!.windowToken, 0)
+                try{
+                    val inputMethodManager: InputMethodManager =
+                        getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                    inputMethodManager.hideSoftInputFromWindow(currentFocus!!.windowToken, 0)
+                }catch (e:Exception){
+                    print("exception is"+e.stackTraceToString());
+                }
+
 
             }
 

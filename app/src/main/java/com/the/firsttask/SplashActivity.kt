@@ -1,6 +1,7 @@
 package com.the.firsttask
 
 import android.animation.ObjectAnimator
+import android.app.Activity
 import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
@@ -23,22 +24,23 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         installSplashScreen()
         setContentView(R.layout.activity_splash)
-        val content: View = findViewById(android.R.id.content)
-        content.viewTreeObserver.addOnPreDrawListener(
-            object : ViewTreeObserver.OnPreDrawListener {
-                override fun onPreDraw(): Boolean {
-                    return if (splashViewModel.getIsReady()) {
-                        val intent = Intent(this@SplashActivity, DrawerActivity::class.java)
-                        startActivity(intent)
-                        finish()
-                        content.viewTreeObserver.removeOnPreDrawListener(this)
-                        true
-
-                    } else {
-                        false
-                    }
-                }
-            }
-        )
+       // val content: View = findViewById(android.R.id.content)
+        val intent = Intent(this@SplashActivity, DrawerActivity::class.java)
+        startActivity(intent)
+        finish()
+//        content.viewTreeObserver.addOnPreDrawListener(
+//            object : ViewTreeObserver.OnPreDrawListener {
+//                override fun onPreDraw(): Boolean {
+//                    return if (splashViewModel.getIsReady()) {
+//
+//                        content.viewTreeObserver.removeOnPreDrawListener(this)
+//                        true
+//
+//                    } else {
+//                        false
+//                    }
+//                }
+//            }
+//        )
     }
 }

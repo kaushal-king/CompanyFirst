@@ -1,13 +1,17 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
 
+
+
+
+
+
     <style name="Theme.MySplash" parent="Theme.SplashScreen">
         <item name="android:windowBackground">@drawable/splash_background</item>
         <item name="windowSplashScreenBackground">@color/white</item>
         <item name="windowSplashScreenAnimatedIcon">@drawable/adult_img</item>
-<!--        <item name="android:windowSplashScreenBrandingImage">@drawable/logoname</item>-->
-        <item name="postSplashScreenTheme">@style/Theme.Firsttask</item>
-
+        <item name="android:windowSplashScreenBrandingImage" tools:targetApi="s">@drawable/logoname</item>
+        <item name="postSplashScreenTheme">@style/Theme.Firsttask.NoActionBar</item>
 
     </style>
 
